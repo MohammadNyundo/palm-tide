@@ -1,0 +1,20 @@
+<svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="frond" d="M0,0 C -6,-22 -9,-42 0,-66 C 9,-42 6,-22 0,0 Z"/>
+  </defs>
+  <g fill="currentColor">
+    <use href="#frond" transform="translate(120,100) rotate(16)"/>
+    <use href="#frond" transform="translate(120,100) rotate(50)"/>
+    <use href="#frond" transform="translate(120,100) rotate(-16)"/>
+    <use href="#frond" transform="translate(120,100) rotate(-50)"/>
+    <use href="#frond" transform="translate(120,100) rotate(164)"/>
+    <use href="#frond" transform="translate(120,100) rotate(130)"/>
+    <use href="#frond" transform="translate(120,100) rotate(196)"/>
+    <use href="#frond" transform="translate(120,100) rotate(230)"/>
+  </g>
+  <circle cx="120" cy="32" r="10" fill="currentColor"/>
+  <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round">
+    <path d="M18,172 C 45,156 65,188 92,172 C 119,156 139,188 166,172 C 185,161 200,164 216,172"/>
+    <path d="M18,192 C 45,176 65,208 92,192 C 119,176 139,208 166,192 C 185,181 200,184 216,192"/>
+  </g>
+</svg>

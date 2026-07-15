@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Five-Day Coast Adventure — Palm & Tide</title>
+<meta name="description" content="One carefully curated journey along Kenya's coast. Local stays, hidden experiences and meaningful connections, guided from arrival to departure. Palm & Tide — Diani, Kenya.">
+
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/images/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ NAV — same as the homepage, but every in-page anchor
+     now points back at index.html since this is its own page. ======= -->
+<header class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img class="nav-logo" src="assets/images/palm-tide-mark.png" alt="Palm &amp; Tide">
+    </a>
+
+    <div class="nav-right">
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="menuOverlay" aria-label="Open menu">
+        <span class="menu-toggle-label">Menu</span>
+        <span class="menu-toggle-icon"><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-overlay-bg" aria-hidden="true"></div>
+  <div class="menu-overlay-tint" aria-hidden="true"></div>
+  <nav class="menu-links">
+    <a href="index.html#experiences"><span>01</span>Experiences</a>
+    <a href="destinations.html"><span>02</span>Destinations</a>
+    <a href="index.html#stories"><span>03</span>Stories</a>
+    <a href="about.html"><span>04</span>About</a>
+    <a href="index.html#contact"><span>05</span>Let&rsquo;s Curate Your Stay</a>
+  </nav>
+  <div class="menu-footer">
+    <a href="index.html#plan" class="btn btn-solid">Begin Your Journey</a>
+    <p class="menu-meta">Palm &amp; Tide · Diani, Kenya</p>
+  </div>
+</div>
+
+<!-- ============ INTRODUCING — full-bleed photograph, faded to black
+     toward the right, where the text sits. The group of people is
+     naturally on the left third of the source image, so the text
+     column has honest empty sand to sit against rather than
+     fighting the subject for space. ============ -->
+<section class="detail-hero">
+  <div class="detail-hero-media">
+    <img src="assets/images/local2.jpeg" alt="Guests walking along the shore in Diani, Kenya, with palm trees lining the beach" onerror="this.style.opacity=0;">
+  </div>
+  <div class="detail-hero-overlay" aria-hidden="true"></div>
+
+  <div class="detail-hero-content">
+    <p class="detail-hero-eyebrow">Introducing</p>
+    <h1 class="detail-hero-title">The Five-Day<br>Coast Adventure</h1>
+    <p class="detail-hero-line">From the moment you arrive until the moment you leave, every day naturally leads into the next.</p>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS — ankle-deep water: one shade lighter
+     than the knee-deep blue used in "Experience Kenya Differently,"
+     keeping the same color family as the visitor moves further into
+     the site. Plain, direct copy — no bullet points, no icons. ===== -->
+<section class="detail-intro reveal-section" data-reveal>
+  <div class="detail-intro-frame">
+    <p class="detail-intro-lede">To make sure you spend your holiday enjoying Kenya&rsquo;s coast rather than planning it, Palm &amp; Tide works as a locally based tour curator.</p>
+    <p class="detail-intro-body">We&rsquo;ve shaped that into one considered set of packages that guide your experience from arrival to departure &mdash; simple, direct, and built to make sense from the very first day.</p>
+    <a href="index.html#plan" class="btn btn-ink">Begin Your Journey <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>
+
+<!-- ==========================================================
+     WHAT WE BRING TO EVERY JOURNEY
+========================================================== -->
+
+<section class="journey-features reveal-section" data-reveal>
+
+    <div class="journey-features-inner">
+
+        <p class="journey-features-label">
+            WHAT WE BRING TO EVERY JOURNEY
+        </p>
+
+        <div class="journey-features-grid">
+
+            <article class="journey-feature">
+
+                <div class="journey-feature-image">
+                    <img src="assets/images/jahazi2.png"
+                        alt="Curated coastal experiences">
+                </div>
+
+                <div>
+
+                    <h3>Thoughtfully Crafted Journeys</h3>
+
+                    <p>
+                        Private dhow escapes, coastal adventures,
+                        hidden tour spots and thoughtfully crafted
+                        experiences designed around your travel style.
+
+                        From accommodation coordination to
+                        personalized itineraries, we help you
+                        experience the Kenyan coast with ease,
+                        elegance and local insight.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="journey-feature">
+
+                <div class="journey-feature-image">
+                    <img src="assets/images/meet.png"
+                        alt="Trusted local connections">
+                </div>
+
+                <div>
+
+                    <h3>Trusted Local Connections</h3>
+
+                    <p>
+                        We work closely with carefully selected
+                        hosts, guides and experience partners
+                        to ensure every journey feels authentic,
+                        smooth and unforgettable.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+    <p class="footer-meta">Palm &amp; Tide · Diani, Kenya · &copy; <span id="footerYear"></span></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

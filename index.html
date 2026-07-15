@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palm & Tide — Experience Kenya Differently</title>
+<meta name="description" content="Thoughtfully curated stays, Swahili cuisine, island culture and wildlife adventures — Kenya's coast, experienced the way locals live it. Palm & Tide — Diani, Kenya.">
+
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/images/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ NAV — identity only. One action lives in the hero,
+     not competing with it up here. ============ -->
+<header class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">
+      <img class="nav-logo" src="assets/images/palm-tide-mark.png" alt="Palm &amp; Tide">
+      <!-- <span class="nav-brand-name">Palm &amp; Tide</span> -->
+    </a>
+
+    <div class="nav-right">
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="menuOverlay" aria-label="Open menu">
+        <span class="menu-toggle-label">Menu</span>
+        <span class="menu-toggle-icon"><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ FULL-SCREEN MENU OVERLAY ============ -->
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-overlay-bg" aria-hidden="true"></div>
+  <div class="menu-overlay-tint" aria-hidden="true"></div>
+  <nav class="menu-links">
+    <a href="#experiences"><span>01</span>Experiences</a>
+    <!-- Destinations and About aren't part of this homepage's chapter flow —
+         route to their own pages once built, rather than a dead anchor. -->
+    <a href="destinations.html"><span>02</span>Destinations</a>
+    <a href="#stories"><span>03</span>Stories</a>
+    <a href="about.html"><span>04</span>About</a>
+    <a href="#contact"><span>05</span>Let&rsquo;s Curate Your Stay</a>
+  </nav>
+  <div class="menu-footer">
+    <a href="#plan" class="btn btn-solid">Begin Your Journey</a>
+    <p class="menu-meta">Palm &amp; Tide · Diani, Kenya</p>
+  </div>
+</div>
+
+<!-- ============ HERO — the brand's first impression. Kept almost
+     exactly as it is, per the direction: don't sell yet, make people
+     feel. Only the tagline's last word and the CTA wording shifted
+     to match the new "curator, not tour operator" voice. ============ -->
+<section class="hero" id="top">
+
+  <div class="hero-media" id="heroMedia">
+    <img
+      class="hero-photo"
+      id="heroPhoto"
+      src="assets/images/hut2.png"
+      alt="Aerial view of a palm-fringed beach in Diani, Kenya — thatched huts along the tree line, white sand meeting turquoise water, and swimmers paddling near a reef"
+      onerror="this.style.opacity=0;">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-foam" aria-hidden="true"></div>
+  </div>
+
+  <div class="hero-viewport">
+    <div class="hero-content" id="heroContent">
+      <h1 class="hero-tagline">Where Ocean, Culture<br>&amp; Island Elegance Meet.</h1>
+      <p class="hero-support">Thoughtfully curated journeys along Kenya's coast, inspired by the people who call it home.</p>
+      <a href="#plan" class="btn btn-solid hero-btn">Begin Your Journey</a>
+    </div>
+
+    <button class="hero-anchor" id="scrollCue" aria-label="Continue to the next section">
+      Diani &middot; Kenya
+    </button>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE KENYA DIFFERENTLY — this is the visitor's
+     problem, not our pitch. Diani already overwhelms with choice;
+     the section names that friction before Palm & Tide offers any
+     answer. No CTA here — it closes on a single quiet line and lets
+     the next section pick up the thought. ============ -->
+<section class="about reveal-section" id="about-story" data-reveal>
+  <div class="about-frame">
+    <div class="about-copy">
+      <h2 class="about-heading">Experience Kenya<br>Differently</h2>
+      <p class="about-lede">Diani has no shortage of beautiful places. The challenge isn&rsquo;t finding something to do. It&rsquo;s knowing what deserves your time.</p>
+      <p class="about-body">Scroll through travel blogs. Compare twenty hotels. Read hundreds of reviews. Book five different excursions. By the time you&rsquo;ve finished planning, you&rsquo;ve already spent your holiday.</p>
+      <p class="about-close">There is a simpler way.</p>
+    </div>
+
+    <div class="about-visual">
+      <div class="about-image">
+        <img src="assets/images/carribean4.png" alt="People connecting on Kenya's coast" onerror="this.style.opacity=0;">
+      </div>
+      <p class="about-caption">
+        <span class="about-caption-kicker">Diani &middot; Kenya</span>
+        <span class="about-caption-line">Our first excursion with just a handful of guests.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="approach reveal-section" id="approach" data-reveal>
+
+    <div class="approach-frame">
+
+        <p class="approach-label">
+            CURATED ALONG KENYA'S COAST
+        </p>
+
+        <h2 class="approach-title">
+            We Curate Journeys,<br>
+            Not Just Holidays.
+        </h2>
+
+        <p class="approach-copy">
+
+            Palm &amp; Tide brings together trusted local stays,
+            boat captains, guides, chefs and unforgettable experiences
+            into one seamless coastal journey.
+
+            We spend our time discovering the places worth your time,
+            so when you arrive, everything already fits together naturally.
+
+        </p>
+
+        <p class="approach-copy approach-copy-last">
+
+            "Carefully chosen before you arrive."
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ============ BEGIN YOUR JOURNEY STRIP ============
+     Same treatment as the Guest Corner photo strip — full-bleed
+     photo, teal tint, italic display type centered on top. Sits
+     as a quiet breath between the approach pitch and the four
+     tides grid. ============ -->
+<section class="journey-strip" role="img" aria-label="Golden hour seating along Kenya's coast">
+  <p class="journey-strip-text">Begin Your Journey</p>
+</section>
+
+<!-- ============ THE JOURNEY IN FOUR TIDES ============
+     Renamed and reordered so the four cards read chronologically —
+     arrival, discovery, adventure, connection — the shape of the
+     holiday itself, not four unrelated categories. Grid slots and
+     photography stay put (no new assets yet); a small numeral on
+     each card carries the sequence regardless of where it lands in
+     the mosaic. Card titles carry the brand voice; the line beneath
+     each one still carries the search-intent keywords (island tours,
+     Swahili cuisine, safari adventures, boutique stays) so the copy
+     works for people and for search/AI systems at the same time.
+     Resting state: sand-colored text over the photo. On hover/focus,
+     a wavy tide line rises to cover roughly the bottom quarter of
+     the card — as the water reveals itself, the text brightens to
+     white and picks up a soft glow, like it's catching the light
+     bouncing off the tide. ============ -->
+<section class="experiences reveal-section"
+         id="experiences"
+         data-reveal>
+
+    <div class="experience-mosaic">
+      <h2 class="experiences-heading">Every journey follows four tides.<br>Here&rsquo;s how it unfolds.</h2>
+        <div class="experience-grid">
+
+            <!-- =========================
+                 01
+            ========================== -->
+
+            <article class="experience-card card-wide"
+                     style="background-image:url('assets/images/bahati4.jpg');">
+
+                <div class="experience-card-tint"></div>
+
+                <div class="card-tide" aria-hidden="true">
+                    <svg viewBox="0 0 400 60" preserveAspectRatio="none">
+                        <path d="M0 30 C60 6 120 54 200 30 C280 6 340 54 400 30 L400 60 L0 60 Z"/>
+                    </svg>
+                </div>
+
+                <div class="experience-card-copy">
+
+                    <span class="card-number">01</span>
+
+                    <span class="experience-icon">
+                        <svg viewBox="0 0 22 18">
+                            <path d="M2 17V9l9-7 9 7v8"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="1.6"
+                                  stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+
+                    <h3>Stay by<br>the Tide</h3>
+
+                    <p>
+                        Begin somewhere that already feels like home.
+                        Boutique hotels, beach cottages, eco-lodges and
+                        private villas carefully chosen for your journey.
+                    </p>
+
+                    <a href="destinations.html#stay-by-the-tide"
+                       class="experience-link">
+
+                        Explore
+                        <span>&rarr;</span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+            <!-- =========================
+                 02
+            ========================== -->
+
+            <article class="experience-card card-tall"
+                     style="background-image:url('assets/images/snork.png');">
+
+                <div class="experience-card-tint"></div>
+
+                <div class="card-tide" aria-hidden="true">
+                    <svg viewBox="0 0 400 60" preserveAspectRatio="none">
+                        <path d="M0 34 C70 10 130 58 200 34 C270 10 330 58 400 34 L400 60 L0 60 Z"/>
+                    </svg>
+                </div>
+
+                <div class="experience-card-copy">
+
+                    <span class="card-number">02</span>
+
+                    <span class="experience-icon">
+                        <svg viewBox="0 0 20 20">
+                            <path d="M6.5 2.5H13.5L17 7L10 18L3 7Z"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="1.4"/>
+                            <path d="M3 7H17M10 2.5V7"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="1.4"/>
+                        </svg>
+                    </span>
+
+                    <h3>Find<br>Your Style</h3>
+
+                    <p>
+
+                        Discover local designers,
+                        handcrafted jewellery,
+                        timeless fashion and meaningful
+                        souvenirs that carry the story
+                        of the Swahili Coast.
+
+                    </p>
+
+                    <a href="destinations.html#find-your-style"
+                       class="experience-link">
+
+                        Explore
+                        <span>&rarr;</span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+            <!-- =========================
+                 03
+            ========================== -->
+
+            <article class="experience-card card-square-a"
+                     style="background-image:url('assets/images/jahazi2.png');">
+
+                <div class="experience-card-tint"></div>
+
+                <div class="card-tide" aria-hidden="true">
+                    <svg viewBox="0 0 400 60" preserveAspectRatio="none">
+                        <path d="M0 30 C60 6 120 54 200 30 C280 6 340 54 400 30 L400 60 L0 60 Z"/>
+                    </svg>
+                </div>
+
+                <div class="experience-card-copy">
+
+                    <span class="card-number">03</span>
+
+                    <span class="experience-icon">
+                        <svg viewBox="0 0 32 16">
+                            <path d="M1 8c3-6 6-6 9 0s6 6 9 0 6-6 9 0"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="1.6"/>
+                        </svg>
+                    </span>
+
+                    <h3>Follow<br>the Tide</h3>
+
+                    <p>
+
+                        Sail hidden channels,
+                        discover coral reefs and
+                        follow the rhythm of
+                        the Indian Ocean.
+
+                    </p>
+
+                    <a href="destinations.html#follow-the-tide"
+                       class="experience-link">
+
+                        Explore
+                        <span>&rarr;</span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+            <!-- =========================
+                 04
+            ========================== -->
+
+            <article class="experience-card card-square-b"
+                     style="background-image:url('assets/images/meet.png');">
+
+                <div class="experience-card-tint"></div>
+
+                <div class="card-tide" aria-hidden="true">
+                    <svg viewBox="0 0 400 60" preserveAspectRatio="none">
+                        <path d="M0 32 C65 8 125 56 200 32 C275 8 335 56 400 32 L400 60 L0 60 Z"/>
+                    </svg>
+                </div>
+
+                <div class="experience-card-copy">
+
+                    <span class="card-number">04</span>
+
+                    <span class="experience-icon">
+                        <svg viewBox="0 0 20 20">
+                            <path d="M10 1c5 3 8 7 8 11a8 8 0 1 1-16 0c0-4 3-8 8-11Z"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="1.6"/>
+                        </svg>
+                    </span>
+
+                    <h3>Meet<br>the Coast</h3>
+
+                    <p>
+
+                        Meet the people,
+                        traditions and flavours
+                        that turn every holiday
+                        into a lasting memory.
+
+                    </p>
+
+                    <a href="destinations.html#meet-the-coast"
+                       class="experience-link">
+
+                        Explore
+                        <span>&rarr;</span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+    <a href="five-day-coast-adventure.html" class="experiences-explore-button">
+        Explore The Journey.
+        <span aria-hidden="true">→</span>
+    </a>
+    
+
+</section>
+
+<!-- ============ GUEST CORNER ============
+     Merges the old Travel Journals carousel and the standalone Guest
+     Favourite block into one section, per the new wireframe. Testimonials
+     are now a static three-across grid (no rotator/dots) — each card's
+     avatar overlaps the top edge of its own card. Title reads as a
+     horizontal photo strip (adventure2.png); the rest of the section
+     sits on the coral reef texture (coral.jpeg). ============ -->
+<section class="guest-corner reveal-section" id="stories" data-reveal>
+
+  <div class="guest-corner-strip" role="img" aria-label="Guests enjoying an excursion on Kenya's coast">
+    <p class="guest-corner-eyebrow">Guests Corner</p>
+  </div>
+
+  <div class="guest-corner-body">
+    <h2 class="guest-corner-heading">What Our Guests Say.</h2>
+
+    <div class="guest-corner-grid">
+      <blockquote class="guest-card">
+        <div class="guest-card-avatar" aria-hidden="true"></div>
+        <p>We came for the beaches and left having eaten dinner with a family in Kwale we still write to.</p>
+        United Kingdom &middot; 6 Nights
+      </blockquote>
+
+      <blockquote class="guest-card">
+        <div class="guest-card-avatar" aria-hidden="true"></div>
+        <p>If you&rsquo;re visiting Diani for the first time, book the Five-Day Coast Adventure&mdash;it saved us weeks of planning.</p>
+        Germany &middot; 5 Nights
+      </blockquote>
+
+      <blockquote class="guest-card">
+        <div class="guest-card-avatar" aria-hidden="true"></div>
+        <p>We gave love, we got love in return. That&rsquo;s the only way I know how to describe Diani now.</p>
+        South Africa &middot; 7 Nights
+      </blockquote>
+    </div>
+
+    <div class="guest-favourite">
+      <span class="guest-favourite-label">★ Guest Favourite</span>
+      <h3 class="guest-favourite-title">The Five-Day Coast Adventure</h3>
+      <div class="guest-stars">★★★★★</div>
+      <p class="guest-favourite-copy">The journey most first-time guests choose when discovering Kenya&rsquo;s coast. Five carefully curated days of stays, local experiences and meaningful connections&mdash;all planned before you arrive.</p>
+      <a href="assets/images/adventure3.png" class="guest-favourite-button">
+        Explore The Journey <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Kept from the old Travel Journals seam — still the right handoff
+       into the Reef CTA that follows. -->
+  <div class="tide-foam" aria-hidden="true">
+    <span class="tide-foam-layer tide-foam-a"></span>
+    <span class="tide-foam-layer tide-foam-b"></span>
+    <span class="tide-foam-layer tide-foam-c"></span>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA — BEGIN THE JOURNEY ============
+     The only real ask on the page, and it isn't "Book Now." One
+     continuous photograph (scum.png) with three panels laid over
+     it — a wide CTA panel naming the signature journey, a quiet
+     panel that just lets the photo breathe, and a full-width strip
+     for the social links, where the page finally turns to shore-white.
+     Carries id="plan" — every "Begin Your Journey" button on the
+     site scrolls here now. The main button now leads to the
+     dedicated Five-Day Coast Adventure page rather than just
+     scrolling to #contact, since that page now exists. ============ -->
+<section class="reef reveal-section" id="plan" data-reveal>
+  <div class="reef-photo" role="img" aria-label="Sea foam washing onto the shore, Diani, Kenya"></div>
+ 
+  <div class="reef-grid">
+    <div class="reef-block reef-block-cta">
+      <h3 class="reef-cta-title">We've already planned it.</h3>
+      <!-- <p class="reef-cta-product">The Five-Day Coast Adventure</p> -->
+      <p class="reef-cta-copy">All you have to do is arrive.</p>
+      <a href="five-day-coast-adventure.html" class="btn btn-shore">Begin Your Journey <span aria-hidden="true">&rarr;</span></a>
+    </div>
+ 
+    <div class="reef-block reef-block-blank" aria-hidden="true"></div>
+ 
+    <div class="reef-block reef-block-social">
+      <span class="reef-social-label">Follow Along</span>
+      <nav class="reef-social-links">
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/254700000000" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:hello@palmandtide.com">Email</a>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+    <!-- <img class="seal seal-footer" src="assets/images/palm-tide-mark.png" alt="Palm & Tide">
+    <p class="footer-tagline">The ocean is waiting. When you're ready, we'll help you curate a journey worth remembering.</p>
+    <nav class="footer-links">
+      <a href="#experiences">Experiences</a>
+      <a href="#stories">Travel Journals</a>
+      <a href="#plan" class="footer-cta">Begin Your Journey</a>
+    </nav> -->
+    <p class="footer-meta">Palm &amp; Tide · Diani, Kenya · &copy; <span id="footerYear"></span></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
