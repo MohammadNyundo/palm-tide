@@ -29,10 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', onNavScroll, { passive: true });
 
   // ---------------------------------------------------------
-  // Full-screen menu overlay.
+  // Menu drawer: toggle button, scrim click, in-menu link
+  // clicks, and Escape all close it.
   // ---------------------------------------------------------
   const menuToggle = document.getElementById('menuToggle');
   const menuOverlay = document.getElementById('menuOverlay');
+  const menuScrim = document.getElementById('menuScrim');
 
   const closeMenu = () => {
     document.body.classList.remove('menu-open');
@@ -50,6 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.contains('menu-open') ? closeMenu() : openMenu();
   });
 
+  if (menuScrim) {
+    menuScrim.addEventListener('click', closeMenu);
+  }
+
   menuOverlay.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenu);
   });
@@ -59,10 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ---------------------------------------------------------
-  // Scroll cue — the hero no longer hands its bottom strip off to
-  // About via a scroll-linked transform (that trick is what buried
-  // the anchor and the foam in the first place). The anchor now just
-  // carries the visitor down to the tide transition that follows it.
+  // Scroll cue — carries the visitor down to the tide transition
+  // that follows the hero.
   // ---------------------------------------------------------
   const scrollCue = document.getElementById('scrollCue');
   const heroToAbout = document.getElementById('heroToAbout');
@@ -139,5 +143,23 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach((el) => observer.observe(el));
   } else {
     revealEls.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  // ---------------------------------------------------------
+  // Adventure page — day-by-day itinerary accordion (only runs
+  // if the markup exists on this page).
+  // ---------------------------------------------------------
+  const itineraryDays = document.querySelectorAll('.itinerary-day');
+  if (itineraryDays.length) {
+    itineraryDays.forEach((day, index) => {
+      const trigger = day.querySelector('.itinerary-day-trigger');
+      if (!trigger) return;
+      if (index === 0) day.classList.add('is-open');
+      trigger.addEventListener('click', () => {
+        const isOpen = day.classList.contains('is-open');
+        itineraryDays.forEach((d) => d.classList.remove('is-open'));
+        if (!isOpen) day.classList.add('is-open');
+      });
+    });
   }
 });

@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Follow the Tide — Palm & Tide</title>
-<meta name="description" content="Kongo River, Wasini dolphin tours, Chale Island and Funzi Island — dhow excursions along Kenya's Swahili Coast with Palm & Tide.">
+<meta name="description" content="Private islands and river-to-ocean excursions aboard traditional jahazis and ngalawas — Kongo River, Wasini, Chale and Funzi Island with Palm & Tide.">
 <link rel="icon" href="assets/images/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style1.css">
 </head>
 <body>
 
@@ -17,6 +18,7 @@
   <div class="nav-inner">
     <a href="index.html" class="nav-brand">
       <img class="nav-logo" src="assets/images/palm-tide-mark.png" alt="Palm &amp; Tide">
+      <span class="nav-brand-name">Palm &amp; Tide</span>
     </a>
     <div class="nav-right">
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="menuOverlay" aria-label="Open menu">
@@ -28,19 +30,20 @@
 </header>
 
 <div class="menu-overlay" id="menuOverlay">
-  <div class="menu-overlay-bg" aria-hidden="true"></div>
-  <div class="menu-overlay-tint" aria-hidden="true"></div>
-  <nav class="menu-links">
-    <a href="index.html#approach"><span>01</span>The Journey</a>
-    <a href="index.html#experiences"><span>02</span>Four Tides</a>
-    <a href="index.html#journals"><span>03</span>Travel Journals</a>
-    <a href="about.html"><span>04</span>About</a>
-    <a href="index.html#contact"><span>05</span>Let&rsquo;s Curate Your Stay</a>
-  </nav>
-  <div class="menu-footer">
-    <a href="index.html#plan" class="btn btn-solid">Begin Your Journey</a>
-    <p class="menu-meta">Palm &amp; Tide · Diani, Kenya</p>
-  </div>
+  <div class="menu-scrim" id="menuScrim" aria-hidden="true"></div>
+  <aside class="menu-panel" role="dialog" aria-modal="true" aria-label="Site menu">
+    <nav class="menu-links">
+      <a href="index.html#approach"><span>01</span>The Journey</a>
+      <a href="index.html#experiences"><span>02</span>Four Tides</a>
+      <a href="index.html#stories"><span>03</span>Guests Corner</a>
+      <a href="about.html"><span>04</span>About</a>
+      <a href="index.html#contact"><span>05</span>Let&rsquo;s Curate Your Stay</a>
+    </nav>
+    <div class="menu-footer">
+      <a href="index.html#plan" class="btn btn-solid">Begin Your Journey</a>
+      <p class="menu-meta">Palm &amp; Tide · Diani, Kenya</p>
+    </div>
+  </aside>
 </div>
 
 <section class="page-hero">
@@ -51,14 +54,14 @@
   <div class="page-hero-content">
     <p class="page-breadcrumb"><a href="index.html">Home</a> / Follow the Tide</p>
     <h1 class="page-hero-title">Follow the Tide</h1>
-    <p class="page-hero-support">Dhow crossings, dolphins at sunrise and sandbanks that only reveal themselves when the water pulls back.</p>
+    <p class="page-hero-support">Private islands and river-to-ocean crossings, sailed the traditional way — aboard hand-built jahazis and ngalawas that have worked this coast for generations.</p>
   </div>
 </section>
 
 <section class="detail-intro reveal-section" data-reveal>
   <div class="detail-intro-inner">
     <p class="section-eyebrow">Third Tide &middot; Adventure</p>
-    <p class="detail-intro-body">Once you've settled in and found your style, the coast asks to be explored by water. These four excursions are the ones we return to again and again — chosen for the moments they make possible, not just the places they visit.</p>
+    <p class="detail-intro-body">Once you've settled in and found your style, the coast asks to be explored by water. All four excursions below move at the pace of the coast itself — aboard traditional jahazis and hand-carved ngalawas, the same vessels that have carried this coast's fishermen and traders for generations.</p>
   </div>
 </section>
 
@@ -67,15 +70,15 @@
   <div class="detail-row">
     <div class="detail-row-media">
       <span class="detail-row-index">01</span>
-      <img src="assets/images/kaya.png" alt="Kongo River excursion, Diani, Kenya" onerror="this.style.opacity=0;">
+      <img src="assets/images/kongo.png" alt="Kongo River sunset cruise, Diani, Kenya" onerror="this.style.opacity=0;">
     </div>
     <div class="detail-row-copy">
-      <h3>Kongo River Excursion</h3>
-      <p>A quiet paddle inland, away from the open ocean, through mangrove channels where the water turns glassy and the birdlife takes over. A slower, greener side of the coast most visitors never see.</p>
+      <h3>Kongo River Sunset Cruise</h3>
+      <p>A slow cruise where the Kongo River gives way to open sea, timed to hit the water just as the sun drops &mdash; glassy mangrove channels by day, molten gold by evening. From river to ocean, in a single unhurried run.</p>
       <ul class="detail-tags">
         <li>Half-day</li>
-        <li>Mangrove channels</li>
-        <li>Birdwatching</li>
+        <li>River to Ocean</li>
+        <li>Sunset</li>
       </ul>
     </div>
   </div>
@@ -83,15 +86,15 @@
   <div class="detail-row">
     <div class="detail-row-media">
       <span class="detail-row-index">02</span>
-      <img src="assets/images/carribeann2.png" alt="Wasini Island dolphin tour, Kenya" onerror="this.style.opacity=0;">
+      <img src="assets/images/dolphine.jpg" alt="Wasini Island dolphin swim, Kenya" onerror="this.style.opacity=0;">
     </div>
     <div class="detail-row-copy">
-      <h3>Wasini</h3>
-      <p>Wake before sunrise to watch dolphins move through the channel, then drift into Wasini's coastal island vibe — coral gardens, a Swahili seafood lunch, and an afternoon that runs on island time.</p>
+      <h3>Wasini Island &mdash; Swim With the Dolphins</h3>
+      <p>Wake before sunrise to swim alongside pods of dolphins in the channel, then drift into Wasini's slow island rhythm &mdash; coral gardens, a Swahili seafood lunch, and an afternoon that runs on island time.</p>
       <ul class="detail-tags">
         <li>Full-day</li>
-        <li>Dolphin viewing</li>
-        <li>Coral gardens</li>
+        <li>Dolphin Swim</li>
+        <li>Coral Gardens</li>
       </ul>
     </div>
   </div>
@@ -99,15 +102,15 @@
   <div class="detail-row">
     <div class="detail-row-media">
       <span class="detail-row-index">03</span>
-      <img src="assets/images/palms.jpg" alt="Chale Island excursion, Kenya" onerror="this.style.opacity=0;">
+      <img src="assets/images/funzi.png" alt="Chale Island creek and mangrove forest, Kenya" onerror="this.style.opacity=0;">
     </div>
     <div class="detail-row-copy">
-      <h3>Chale Island Excursion</h3>
-      <p>A small tidal island split evenly between untouched forest and open sand. At low tide you can walk the reef flats; at high tide, the island closes back in on itself and feels entirely private.</p>
+      <h3>Chale Island &mdash; Creek &amp; Mangrove Forest</h3>
+      <p>Discover the coastal ocean creek and its mangrove forest by traditional boat, drifting through channels where the tide decides how much of the island you get to see that day.</p>
       <ul class="detail-tags">
         <li>Half-day</li>
-        <li>Tidal island</li>
-        <li>Reef walking</li>
+        <li>Mangrove Forest</li>
+        <li>Tidal Creek</li>
       </ul>
     </div>
   </div>
@@ -115,15 +118,15 @@
   <div class="detail-row">
     <div class="detail-row-media">
       <span class="detail-row-index">04</span>
-      <img src="assets/images/zuri.jpg" alt="Funzi Island excursion, Kenya" onerror="this.style.opacity=0;">
+      <img src="assets/images/ngalawa.png" alt="Funzi Island private sandbank, Kenya" onerror="this.style.opacity=0;">
     </div>
     <div class="detail-row-copy">
-      <h3>Funzi Island Excursion</h3>
-      <p>Further south, where the Ramisi River meets the ocean — a sandbank that appears and disappears with the tide, a mangrove boat ride, and a village that still moves at the pace of the water around it.</p>
+      <h3>Funzi Island &mdash; Tranquility on a Private Island</h3>
+      <p>A sandbank that appears and disappears with the tide, reached the traditional way &mdash; aboard a jahazi or a hand-carved ngalawa &mdash; for an island that asks for nothing but quiet.</p>
       <ul class="detail-tags">
         <li>Full-day</li>
-        <li>Sandbank</li>
-        <li>Mangrove boat ride</li>
+        <li>Private Sandbank</li>
+        <li>Traditional Sail</li>
       </ul>
     </div>
   </div>

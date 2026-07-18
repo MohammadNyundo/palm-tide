@@ -3,31 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Five-Day Coast Adventure — Palm & Tide</title>
-<meta name="description" content="One carefully curated journey along Kenya's coast. Local stays, hidden experiences and meaningful connections, guided from arrival to departure. Palm & Tide — Diani, Kenya.">
-
-<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/images/favicon-16.png" sizes="16x16" type="image/png">
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-
+<title>The 5-Day Diani Adventure — Palm & Tide</title>
+<meta name="description" content="From arrival to departure — the 5-Day Diani Adventure: curated stays, local style, ocean excursions, village bike rides, and a surprise from Palm & Tide.">
+<link rel="icon" href="assets/images/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="adventure.css">
 </head>
 <body>
 
-<!-- ============ NAV — same as the homepage, but every in-page anchor
-     now points back at index.html since this is its own page. ======= -->
 <header class="site-nav" id="siteNav">
   <div class="nav-inner">
     <a href="index.html" class="nav-brand">
       <img class="nav-logo" src="assets/images/palm-tide-mark.png" alt="Palm &amp; Tide">
+      <span class="nav-brand-name">Palm &amp; Tide</span>
     </a>
-
     <div class="nav-right">
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="menuOverlay" aria-label="Open menu">
         <span class="menu-toggle-label">Menu</span>
@@ -38,117 +30,355 @@
 </header>
 
 <div class="menu-overlay" id="menuOverlay">
-  <div class="menu-overlay-bg" aria-hidden="true"></div>
-  <div class="menu-overlay-tint" aria-hidden="true"></div>
-  <nav class="menu-links">
-    <a href="index.html#experiences"><span>01</span>Experiences</a>
-    <a href="destinations.html"><span>02</span>Destinations</a>
-    <a href="index.html#stories"><span>03</span>Stories</a>
-    <a href="about.html"><span>04</span>About</a>
-    <a href="index.html#contact"><span>05</span>Let&rsquo;s Curate Your Stay</a>
-  </nav>
-  <div class="menu-footer">
-    <a href="index.html#plan" class="btn btn-solid">Begin Your Journey</a>
-    <p class="menu-meta">Palm &amp; Tide · Diani, Kenya</p>
-  </div>
+  <div class="menu-scrim" id="menuScrim" aria-hidden="true"></div>
+  <aside class="menu-panel" role="dialog" aria-modal="true" aria-label="Site menu">
+    <nav class="menu-links">
+      <a href="index.html#approach"><span>01</span>The Journey</a>
+      <a href="index.html#experiences"><span>02</span>What We Offer</a>
+      <a href="index.html#stories"><span>03</span>Guests Corner</a>
+      <a href="about.html"><span>04</span>About</a>
+      <a href="index.html#contact"><span>05</span>Let&rsquo;s Curate Your Stay</a>
+    </nav>
+    <div class="menu-footer">
+      <a href="index.html#plan" class="btn btn-solid">Begin Your Journey</a>
+      <p class="menu-meta">Palm &amp; Tide · Diani, Kenya</p>
+    </div>
+  </aside>
 </div>
 
-<!-- ============ INTRODUCING — full-bleed photograph, faded to black
-     toward the right, where the text sits. The group of people is
-     naturally on the left third of the source image, so the text
-     column has honest empty sand to sit against rather than
-     fighting the subject for space. ============ -->
-<section class="detail-hero">
-  <div class="detail-hero-media">
-    <img src="assets/images/local2.jpeg" alt="Guests walking along the shore in Diani, Kenya, with palm trees lining the beach" onerror="this.style.opacity=0;">
+<!-- ============ HERO ============ -->
+<section class="adv-hero">
+  <div class="adv-hero-media">
+    <img src="assets/images/palms.jpg" alt="Traditional dhow sailing at sunset off Diani, Kenya" onerror="this.style.opacity=0;">
+    <div class="adv-hero-overlay" aria-hidden="true"></div>
   </div>
-  <div class="detail-hero-overlay" aria-hidden="true"></div>
-
-  <div class="detail-hero-content">
-    <p class="detail-hero-eyebrow">Introducing</p>
-    <h1 class="detail-hero-title">The Five-Day<br>Coast Adventure</h1>
-    <p class="detail-hero-line">From the moment you arrive until the moment you leave, every day naturally leads into the next.</p>
+  <div class="adv-hero-content">
+    <p class="adv-hero-eyebrow"><a href="index.html" style="color:inherit;">Home</a> / The 5-Day Diani Adventure</p>
+    <h1 class="adv-hero-title">The 5-Day Diani Adventure</h1>
+    <p class="adv-hero-meta">5 Days &middot; Diani Coast Adventure</p>
+    <p class="adv-hero-line">From the moment you land to the moment you leave — a journey we&rsquo;ve already planned, built around the same four tides that shape everything we do.</p>
   </div>
 </section>
 
-<!-- ============ HOW IT WORKS — ankle-deep water: one shade lighter
-     than the knee-deep blue used in "Experience Kenya Differently,"
-     keeping the same color family as the visitor moves further into
-     the site. Plain, direct copy — no bullet points, no icons. ===== -->
-<section class="detail-intro reveal-section" data-reveal>
-  <div class="detail-intro-frame">
-    <p class="detail-intro-lede">To make sure you spend your holiday enjoying Kenya&rsquo;s coast rather than planning it, Palm &amp; Tide works as a locally based tour curator.</p>
-    <p class="detail-intro-body">We&rsquo;ve shaped that into one considered set of packages that guide your experience from arrival to departure &mdash; simple, direct, and built to make sense from the very first day.</p>
-    <a href="index.html#plan" class="btn btn-ink">Begin Your Journey <span aria-hidden="true">&rarr;</span></a>
-  </div>
-</section>
-
-<!-- ==========================================================
-     WHAT WE BRING TO EVERY JOURNEY
-========================================================== -->
-
-<section class="journey-features reveal-section" data-reveal>
-
-    <div class="journey-features-inner">
-
-        <p class="journey-features-label">
-            WHAT WE BRING TO EVERY JOURNEY
-        </p>
-
-        <div class="journey-features-grid">
-
-            <article class="journey-feature">
-
-                <div class="journey-feature-image">
-                    <img src="assets/images/jahazi2.png"
-                        alt="Curated coastal experiences">
-                </div>
-
-                <div>
-
-                    <h3>Thoughtfully Crafted Journeys</h3>
-
-                    <p>
-                        Private dhow escapes, coastal adventures,
-                        hidden tour spots and thoughtfully crafted
-                        experiences designed around your travel style.
-
-                        From accommodation coordination to
-                        personalized itineraries, we help you
-                        experience the Kenyan coast with ease,
-                        elegance and local insight.
-                    </p>
-
-                </div>
-
-            </article>
-
-            <article class="journey-feature">
-
-                <div class="journey-feature-image">
-                    <img src="assets/images/meet.png"
-                        alt="Trusted local connections">
-                </div>
-
-                <div>
-
-                    <h3>Trusted Local Connections</h3>
-
-                    <p>
-                        We work closely with carefully selected
-                        hosts, guides and experience partners
-                        to ensure every journey feels authentic,
-                        smooth and unforgettable.
-                    </p>
-
-                </div>
-
-            </article>
-
-        </div>
-
+<!-- ============ HIGHLIGHT ICON STRIP ============ -->
+<section class="adv-icons">
+  <div class="adv-icons-row">
+    <div class="adv-icon-item">
+      <span class="adv-icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 17c2-3 4-3 6 0s4 3 6 0 4-3 6 0M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0" stroke-linecap="round"/></svg></span>
+      <span class="adv-icon-label">Curated Stay</span>
     </div>
+    <div class="adv-icon-item">
+      <span class="adv-icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.5 3H17.5L21 9L12 21L3 9Z" stroke-linejoin="round"/><path d="M3 9H21M12 3V9" stroke-linejoin="round"/></svg></span>
+      <span class="adv-icon-label">Local Style</span>
+    </div>
+    <div class="adv-icon-item">
+      <span class="adv-icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c6 4 8 8 8 12a8 8 0 1 1-16 0c0-4 2-8 8-12Z"/></svg></span>
+      <span class="adv-icon-label">Dolphin Tour</span>
+    </div>
+    <div class="adv-icon-item">
+      <span class="adv-icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke-linecap="round"/></svg></span>
+      <span class="adv-icon-label">Sunset Cruise</span>
+    </div>
+    <div class="adv-icon-item">
+      <span class="adv-icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="10" r="3"/><path d="M5 21c1.5-4 4-6 7-6s5.5 2 7 6" stroke-linecap="round"/></svg></span>
+      <span class="adv-icon-label">Meet Locals</span>
+    </div>
+    <div class="adv-icon-item">
+      <span class="adv-icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 0 1 16 0" stroke-linecap="round"/><path d="M2 12h20M12 4v2M12 12l4-4" stroke-linecap="round"/></svg></span>
+      <span class="adv-icon-label">E-Bike Ride</span>
+    </div>
+  </div>
+</section>
 
+<!-- ============ INTRO ============ -->
+<section class="adv-intro reveal-section" data-reveal>
+  <div class="adv-intro-frame">
+    <p class="adv-intro-lede">This is the journey most first-time guests choose — and the one we recommend if you only take our advice once.</p>
+    <p class="adv-intro-body">Five days, four tides. We take you from the airport to a stay that already feels like home, help you find your style for the coast, put you on the water aboard a traditional jahazi, take you to meet the people who make this coast what it is — and finish with a surprise, courtesy of Palm &amp; Tide, before we see you off.</p>
+  </div>
+</section>
+
+<!-- ============ ITINERARY ============ -->
+<section class="adv-itinerary reveal-section" data-reveal>
+  <div class="adv-itinerary-head">
+    <p class="adv-itinerary-label">Your Journey</p>
+    <h2 class="adv-itinerary-title">Five Days, Day by Day</h2>
+  </div>
+
+  <div class="itinerary">
+
+    <article class="itinerary-day">
+      <button type="button" class="itinerary-day-trigger" aria-expanded="false">
+        <span class="itinerary-day-index">01</span>
+        <span class="itinerary-day-heading">
+          <span class="itinerary-day-label">Arrival</span>
+          <span class="itinerary-day-title">Stay by the Tide</span>
+        </span>
+        <svg class="itinerary-day-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7.5l5 5 5-5"/></svg>
+      </button>
+      <div class="itinerary-day-body">
+        <div class="itinerary-day-body-inner">
+          <div class="itinerary-day-content">
+            <div class="itinerary-day-content-spacer"></div>
+            <div class="itinerary-day-media">
+              <img src="assets/images/bahati5.jpg" alt="Eco lodge cottage by the beach, Diani, Kenya" onerror="this.style.opacity=0;">
+            </div>
+            <ul class="itinerary-day-list">
+              <li>Airport pickup and warm welcome</li>
+              <li>Check-in to your chosen stay &mdash; boutique hotel, cottage, villa or eco lodge</li>
+              <li>Home-prepared Swahili welcome meal</li>
+              <li>Evening to settle in and get your bearings</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="itinerary-day">
+      <button type="button" class="itinerary-day-trigger" aria-expanded="false">
+        <span class="itinerary-day-index">02</span>
+        <span class="itinerary-day-heading">
+          <span class="itinerary-day-label">Discovery</span>
+          <span class="itinerary-day-title">Find Your Style</span>
+        </span>
+        <svg class="itinerary-day-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7.5l5 5 5-5"/></svg>
+      </button>
+      <div class="itinerary-day-body">
+        <div class="itinerary-day-body-inner">
+          <div class="itinerary-day-content">
+            <div class="itinerary-day-content-spacer"></div>
+            <div class="itinerary-day-media">
+              <img src="assets/images/wear.png" alt="Local coastal clothing, Diani, Kenya" onerror="this.style.opacity=0;">
+            </div>
+            <ul class="itinerary-day-list">
+              <li>Visit local designers and independent studios</li>
+              <li>Find linen, kanga and tailoring built for the heat</li>
+              <li>Pick up handcrafted jewellery and accessories</li>
+              <li>Look local, act local &mdash; ready for the days ahead</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="itinerary-day">
+      <button type="button" class="itinerary-day-trigger" aria-expanded="false">
+        <span class="itinerary-day-index">03</span>
+        <span class="itinerary-day-heading">
+          <span class="itinerary-day-label">Adventure</span>
+          <span class="itinerary-day-title">Follow the Tide</span>
+        </span>
+        <svg class="itinerary-day-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7.5l5 5 5-5"/></svg>
+      </button>
+      <div class="itinerary-day-body">
+        <div class="itinerary-day-body-inner">
+          <div class="itinerary-day-content">
+            <div class="itinerary-day-content-spacer"></div>
+            <div class="itinerary-day-media">
+              <img src="assets/images/dolphine.jpg" alt="Dolphin swim excursion off Wasini Island, Kenya" onerror="this.style.opacity=0;">
+            </div>
+            <ul class="itinerary-day-list">
+              <li>Sail aboard a traditional jahazi or hand-carved ngalawa</li>
+              <li>Swim alongside dolphins in the channel</li>
+              <li>Snorkel the coral gardens</li>
+              <li>Swahili seafood lunch and a sunset cruise back</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="itinerary-day">
+      <button type="button" class="itinerary-day-trigger" aria-expanded="false">
+        <span class="itinerary-day-index">04</span>
+        <span class="itinerary-day-heading">
+          <span class="itinerary-day-label">Connection</span>
+          <span class="itinerary-day-title">Meet the Coast</span>
+        </span>
+        <svg class="itinerary-day-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7.5l5 5 5-5"/></svg>
+      </button>
+      <div class="itinerary-day-body">
+        <div class="itinerary-day-body-inner">
+          <div class="itinerary-day-content">
+            <div class="itinerary-day-content-spacer"></div>
+            <div class="itinerary-day-media">
+              <img src="assets/images/shimba.jpeg" alt="Village bike excursion, Ukunda, Diani, Kenya" onerror="this.style.opacity=0;">
+            </div>
+            <ul class="itinerary-day-list">
+              <li>E-bike ride through Mijikenda&rsquo;s villages and backroads</li>
+              <li>Tea with a local family, a walk through the market</li>
+              <li>Traditional Coatal Dances</li>
+              <li>The coast&rsquo;s everyday rhythm, not a show for visitors</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="itinerary-day">
+      <button type="button" class="itinerary-day-trigger" aria-expanded="false">
+        <span class="itinerary-day-index">05</span>
+        <span class="itinerary-day-heading">
+          <span class="itinerary-day-label">Farewell</span>
+          <span class="itinerary-day-title">A Surprise, Courtesy of Palm &amp; Tide</span>
+        </span>
+        <svg class="itinerary-day-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7.5l5 5 5-5"/></svg>
+      </button>
+      <div class="itinerary-day-body">
+        <div class="itinerary-day-body-inner">
+          <div class="itinerary-day-content">
+            <div class="itinerary-day-content-spacer"></div>
+            <div class="itinerary-day-media">
+              <img src="assets/images/surf.png" alt="Sea foam washing onto the shore at sunrise, Diani, Kenya" onerror="this.style.opacity=0;">
+            </div>
+            <ul class="itinerary-day-list">
+              <li>A surprise experience, on us &mdash; our way of saying thank you</li>
+              <li>Time for a final beach walk and last-minute souvenirs</li>
+              <li>Check-out and airport transfer</li>
+              <li>A journey that&rsquo;s already planned for next time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ JOURNEY HIGHLIGHTS ============ -->
+<section class="adv-highlights reveal-section" data-reveal>
+  <div class="adv-highlights-frame">
+    <span class="adv-highlights-label">Journey Highlights</span>
+    <div class="adv-highlights-grid">
+      <div class="adv-highlight">
+        <span class="adv-highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c6 4 8 8 8 12a8 8 0 1 1-16 0c0-4 2-8 8-12Z"/></svg></span>
+        <span class="adv-highlight-label">Marine Wildlife</span>
+      </div>
+      <div class="adv-highlight">
+        <span class="adv-highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke-linecap="round"/></svg></span>
+        <span class="adv-highlight-label">Sunset Experience</span>
+      </div>
+      <div class="adv-highlight">
+        <span class="adv-highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 17V9l10-7 10 7v8" stroke-linejoin="round"/></svg></span>
+        <span class="adv-highlight-label">Curated Stay</span>
+      </div>
+      <div class="adv-highlight">
+        <span class="adv-highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 8c3-6 6-6 9 0s6 6 9 0" stroke-linecap="round"/></svg></span>
+        <span class="adv-highlight-label">Water Adventures</span>
+      </div>
+      <div class="adv-highlight">
+        <span class="adv-highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="10" r="3"/><path d="M5 21c1.5-4 4-6 7-6s5.5 2 7 6" stroke-linecap="round"/></svg></span>
+        <span class="adv-highlight-label">Local Connection</span>
+      </div>
+      <div class="adv-highlight">
+        <span class="adv-highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11Z" stroke-linejoin="round"/></svg></span>
+        <span class="adv-highlight-label">Unforgettable Memories</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INCLUDED / NOT INCLUDED ============ -->
+<section class="adv-terms reveal-section" data-reveal>
+  <div class="adv-terms-grid">
+    <div class="adv-terms-block adv-terms-included">
+      <h3>Included</h3>
+      <ul class="adv-terms-list">
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10.5l4 4 8-9"/></svg>4 nights at your chosen stay</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10.5l4 4 8-9"/></svg>Daily breakfast &amp; the welcome meal</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10.5l4 4 8-9"/></svg>Airport transfers, both ways</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10.5l4 4 8-9"/></svg>Local styling &amp; shopping guide</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10.5l4 4 8-9"/></svg>Dolphin &amp; snorkelling excursion</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10.5l4 4 8-9"/></svg>Village e-bike excursion with a local guide</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10.5l4 4 8-9"/></svg>All activities listed in the itinerary</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10.5l4 4 8-9"/></svg>A surprise, courtesy of Palm &amp; Tide</li>
+      </ul>
+    </div>
+    <div class="adv-terms-block adv-terms-excluded">
+      <h3>Not Included</h3>
+      <ul class="adv-terms-list">
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l10 10M15 5L5 15"/></svg>International flights</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l10 10M15 5L5 15"/></svg>Travel insurance</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l10 10M15 5L5 15"/></svg>Meals not listed in the itinerary</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l10 10M15 5L5 15"/></svg>Personal purchases &amp; souvenirs</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l10 10M15 5L5 15"/></svg>Alcoholic beverages</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l10 10M15 5L5 15"/></svg>Optional add-ons (watersports, quad bikes)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GOOD TO KNOW ============ -->
+<section class="adv-good reveal-section" data-reveal>
+  <div class="adv-good-frame">
+    <div class="adv-good-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke-linecap="round"/></svg>
+      <p class="adv-good-label">Best Time</p>
+      <p class="adv-good-value">Dec&ndash;Mar &amp; Jul&ndash;Oct</p>
+    </div>
+    <div class="adv-good-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c1-3.5 3.5-5.5 7-5.5S15 16.5 16 20"/><circle cx="17" cy="9" r="2.4"/><path d="M15.6 20c.6-2.6 2.2-4.2 4.4-4.6" stroke-linecap="round"/></svg>
+      <p class="adv-good-label">Group Size</p>
+      <p class="adv-good-value">2&ndash;12 People</p>
+    </div>
+    <div class="adv-good-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l6-14 4 8 3-5 3 11" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      <p class="adv-good-label">Pace</p>
+      <p class="adv-good-value">Easy, Fully Guided</p>
+    </div>
+    <div class="adv-good-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11Z" stroke-linejoin="round"/></svg>
+      <p class="adv-good-label">Ideal For</p>
+      <p class="adv-good-value">Couples, Friends, Families</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OTHER WAYS TO JOURNEY ============ -->
+<section class="adv-packages reveal-section" data-reveal>
+  <div class="adv-packages-frame">
+    <div class="adv-packages-head">
+      <p class="adv-packages-label">More Than One Way to Arrive</p>
+      <h2 class="adv-packages-title">Other Packages We Offer</h2>
+      <p class="adv-packages-copy">Not every trip is five days. Here&rsquo;s a quick look at the other journeys we curate &mdash; ask us for details on any of them.</p>
+    </div>
+    <div class="adv-packages-grid">
+      <div class="adv-package-card">
+        <h4>The 3-Day Diani Escape</h4>
+        <p>For limited time. Perfect for long weekends and short coastal getaways.</p>
+      </div>
+      <div class="adv-package-card is-flagship">
+        <span class="adv-package-badge">&#9733; You Are Here</span>
+        <h4>The 5-Day Diani Adventure</h4>
+        <p>Our signature journey &mdash; what we recommend to most first-time visitors.</p>
+      </div>
+      <div class="adv-package-card">
+        <h4>The 7-Day Diani Immersion</h4>
+        <p>For travellers who want to slow down and enjoy Diani at a relaxed pace.</p>
+      </div>
+      <div class="adv-package-card">
+        <h4>Family Journeys</h4>
+        <p>Actually planned around children and parents &mdash; not just extra beds.</p>
+      </div>
+      <div class="adv-package-card">
+        <h4>Team Building</h4>
+        <p>Group retreats built for teams, not tourists.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="adv-cta reveal-section" data-reveal>
+  <div class="adv-cta-frame">
+    <p class="adv-cta-eyebrow">Ready to Explore the Coast?</p>
+    <h2 class="adv-cta-title">Let&rsquo;s Craft Your Perfect Escape.</h2>
+    <p class="adv-cta-copy">Tell us a little about your trip and we&rsquo;ll tailor the 5-Day Diani Adventure to you &mdash; or point you to whichever package fits better.</p>
+    <div class="adv-cta-actions">
+      <a href="https://wa.me/254700000000?text=Hi%20Palm%20%26%20Tide%2C%20I%27d%20like%20to%20book%20the%205-Day%20Diani%20Adventure." target="_blank" rel="noopener" class="btn btn-shore">Chat With Us on WhatsApp <span aria-hidden="true">&rarr;</span></a>
+      <a href="index.html#contact" class="btn btn-ghost">Email Us Instead</a>
+    </div>
+  </div>
 </section>
 
 <footer class="site-footer" id="contact">
