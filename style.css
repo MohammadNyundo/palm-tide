@@ -42,7 +42,7 @@
   /* Height of the "Begin Your Journey" strip. Referenced by the
      strip itself AND by .experiences' negative margin below —
      keep both in sync if this ever changes. */
-  --strip-h: 200px;
+  --strip-h: 120px;
 
   --overlay-rgb: 12,22,24;
 }
@@ -156,6 +156,61 @@ img, svg{ display: block; max-width: 100%; }
 .nav-right{
   display: flex;
   align-items: center;
+}
+
+/* ==========================================================
+   DESKTOP NAV LINKS — visible on screens wider than 860px
+   ========================================================== */
+.nav-links-desktop {
+  display: none;  /* hidden by default, shown on desktop */
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links-desktop a {
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  color: currentColor;
+  opacity: 0.85;
+  transition: opacity 0.25s ease;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+}
+
+.nav-links-desktop a:hover {
+  opacity: 1;
+  border-bottom-color: currentColor;
+}
+
+.nav-links-desktop .nav-cta {
+  padding: 8px 18px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 1;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.nav-links-desktop .nav-cta:hover {
+  background: var(--foam);
+  color: var(--ink);
+  border-color: var(--foam);
+}
+
+/* Hide desktop nav when menu is open */
+.site-nav.is-open .nav-links-desktop {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (min-width: 861px) {
+  .nav-links-desktop {
+    display: flex;
+  }
+  
+  /* Hide hamburger on desktop */
+  .menu-toggle {
+    display: none;
+  }
 }
 
 .menu-toggle{
@@ -637,11 +692,15 @@ body.menu-open .menu-panel{
    so these two sections opt out of the transform (keeping the
    opacity fade only) to keep their sticky strips working.
    ---------------------------------------------------------- */
+/* Opt these sections out of the CSS reveal entirely —
+   GSAP handles their entrance animations now. */
 .experiences.reveal-section,
 .experiences.reveal-section.is-visible,
 .guest-corner.reveal-section,
 .guest-corner.reveal-section.is-visible{
   transform: none;
+  opacity: 1;            /* ← override the 0 from .reveal-section */
+  transition: none;       /* ← kill any competing CSS transition */
 }
 
 /* ==========================================================
@@ -709,17 +768,22 @@ body.menu-open .menu-panel{
   0%, 100%{ box-shadow: 28px 32px 58px -16px rgba(18,40,42,0.26); }
   50%{ box-shadow: 38px 40px 68px -12px rgba(18,40,42,0.3); }
 }
+/* translate3d (not translate) forces each element onto its own
+   GPU compositing layer for the life of the animation. Plain 2D
+   translate() on italic serif text caused visible blur mid-tween
+   in Chrome/Firefox, since the browser was repainting the glyphs
+   on the CPU every frame instead of moving a pre-rasterized layer. */
 @keyframes breezeFloatLeft{
-  0%, 100%{ transform: translate(0, 0); }
-  50%{ transform: translate(-4px, -6px); }
+  0%, 100%{ transform: translate3d(0, 0, 0); }
+  50%{ transform: translate3d(-4px, -6px, 0); }
 }
 @keyframes breezeFloatY{
-  0%, 100%{ transform: translateY(0); }
-  50%{ transform: translateY(-6px); }
+  0%, 100%{ transform: translate3d(0, 0, 0); }
+  50%{ transform: translate3d(0, -6px, 0); }
 }
 @keyframes breezeFloatRight{
-  0%, 100%{ transform: translate(0, 0); }
-  50%{ transform: translate(4px, -6px); }
+  0%, 100%{ transform: translate3d(0, 0, 0); }
+  50%{ transform: translate3d(4px, -6px, 0); }
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -791,6 +855,19 @@ body.menu-open .menu-panel{
 .about-visual{
   margin-top: 96px;
   max-width: 100%;
+  opacity: 0;
+  transform: translateX(64px);
+}
+
+/* Entrance is now owned entirely by GSAP ScrollTrigger (see
+   script.js) so it can trigger at the 50%-into-section mark,
+   land after the copy, and replay every time the section is
+   re-entered from either direction. The old whole-section
+   ".is-visible" coupling is removed on purpose. A no-JS/no-GSAP
+   fallback is provided further down. */
+
+@media (prefers-reduced-motion: reduce){
+  .about-visual{ opacity: 1; transform: none; transition: none; }
 }
 
 .about-image{
@@ -877,9 +954,7 @@ body.menu-open .menu-panel{
     margin-top:34px;
     padding: 22px 34px;
     border-radius: 12px;
-    background: rgba(255,255,255,0.42);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgba(255,255,255,0.68);  /* more opaque to compensate */
     animation: shadowPulseTop 8s ease-in-out infinite, breezeFloatY 8s ease-in-out infinite;
     animation-delay: 2s, 2s;
 }
@@ -949,7 +1024,7 @@ body.menu-open .menu-panel{
   justify-content: center;
   background-image:
     linear-gradient(180deg, rgba(14,58,82,0.45), rgba(14,58,82,0.55)),
-    url("assets/images/golden-seat.jpeg");
+    url("assets/images/travel.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -1038,6 +1113,20 @@ body.menu-open .menu-panel{
      tight 5px-gap mosaic grid, and shifting the whole element
      would open visible gaps against its neighbors. The shadow
      pulse alone still reads as "sunlight moving overhead". */
+}
+
+/* Lazy-loaded background images: a quiet placeholder tone until
+   the real photo is fetched, then a soft fade once it lands. */
+.experience-card.lazy-bg{
+  background-color: var(--sand-card);
+}
+.experience-card.lazy-bg.bg-loaded{
+  animation: shadowPulseTop 8s ease-in-out infinite, bgFadeIn 0.6s ease;
+}
+
+@keyframes bgFadeIn{
+  from{ filter: brightness(1.15) saturate(0.85); }
+  to{ filter: none; }
 }
 
 .card-wide{ animation-delay: 0s; }
@@ -1267,10 +1356,7 @@ body.menu-open .menu-panel{
   box-shadow:0 18px 50px rgba(0,0,0,.06);
 }
 .experiences-explore-button:hover{
-  transform:translateY(-3px);
-  background:var(--lagoon);
-  color:white;
-  border-color:var(--lagoon);
+  border-color: transparent;
 }
 .experiences-explore-button span{ transition:.3s; }
 .experiences-explore-button:hover span{ transform:translateX(6px); }
@@ -1280,7 +1366,7 @@ body.menu-open .menu-panel{
    ========================================================== */
 .guest-corner{
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   background:
     linear-gradient(rgba(252,250,245,.93), rgba(252,250,245,.94)),
     url("assets/images/coral.jpeg");
@@ -1290,18 +1376,14 @@ body.menu-open .menu-panel{
 }
 
 .guest-corner-strip{
-  position: sticky;   /* was: relative — now pins the same way
-                          .journey-strip does, staying fixed at
-                          top:0 for the entire scroll of
-                          .guest-corner and releasing right as
-                          .reef begins. */
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
   z-index: 5;
-  height: 200px;
-  margin: 0;        /* same full-bleed guard as .journey-strip */
+  height: var(--strip-h);
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1348,25 +1430,56 @@ body.menu-open .menu-panel{
 .guest-card{
   margin: 0;
   padding: 44px 28px 32px;
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.72);  /* slightly more opaque to compensate */
+  border: 1px solid rgba(255,255,255,0.5);
   border-radius: 8px;
   animation: shadowPulseRight 8.5s ease-in-out infinite, breezeFloatRight 8.5s ease-in-out infinite;
+  /* Keeps the italic serif quote text crisp during the continuous
+     float above — pins the element to its own compositing layer
+     instead of letting the browser repaint the glyphs each frame. */
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .guest-corner-grid .guest-card:nth-child(1){ animation-delay: 0s, 0s; }
 .guest-corner-grid .guest-card:nth-child(2){ animation-delay: 1.7s, 1.7s; }
 .guest-corner-grid .guest-card:nth-child(3){ animation-delay: 3.4s, 3.4s; }
 
+/* The center card carries the quote about our top-selling package
+   (the 5-Day Diani Adventure), so it sits a level higher than the
+   two flanking cards — its own elevated podium position — and reads
+   above them. */
+.guest-corner-grid .guest-card:nth-child(2){
+  position: relative;
+  z-index: 2;
+  margin-top: -30px;
+  padding-bottom: 40px;
+  background: rgba(255,255,255,0.86);
+  border-color: rgba(255,255,255,0.7);
+}
+
+@media (max-width: 900px){
+  .guest-corner-grid .guest-card:nth-child(2){
+    margin-top: 0;
+  }
+}
+
 .guest-card-avatar{
   width: 72px;
   height: 72px;
   border-radius: 50%;
+  overflow: hidden;
   background: var(--tide);
   margin: -80px auto 20px;
   box-shadow: 0 10px 26px rgba(0,0,0,0.15);
+}
+
+.guest-card-avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .guest-card p{
@@ -1390,12 +1503,13 @@ body.menu-open .menu-panel{
   max-width: 700px;
   margin: 0 auto;
   padding: 64px 24px;
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255,255,255,0.78);  /* more opaque to compensate */
   border-radius: 12px;
   animation: shadowPulseRight 9s ease-in-out infinite, breezeFloatRight 9s ease-in-out infinite;
   animation-delay: 5s, 5s;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .guest-favourite-label{
@@ -1697,6 +1811,60 @@ body.menu-open .menu-panel{
   color: var(--foam);
 }
 
+/* ----------------------------------------------------------
+   "Begin Your Journey" — the one consistent CTA treatment,
+   used everywhere this phrase appears across the site. White
+   by default; on hover, water rises to fill the button with
+   the same wavy tideline used on the "What We Offer" cards
+   (see .card-tide) rather than a flat SaaS-style gradient
+   wipe. Overrides whatever .btn-solid/.btn-shore background
+   it's paired with, so existing markup can keep its base
+   .btn class untouched.
+   ---------------------------------------------------------- */
+.btn-journey{
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background: var(--foam);
+  color: var(--ink);
+  isolation: isolate;
+}
+
+.btn-journey::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 320%;
+  z-index: -1;
+  background: var(--lagoon);
+  opacity: 0.88;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C60 6 120 54 200 30 C280 6 340 54 400 30 L400 60 L0 60 Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C60 6 120 54 200 30 C280 6 340 54 400 30 L400 60 L0 60 Z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  transform: translateY(100%);
+  transition: transform 0.65s cubic-bezier(0.22, 0.7, 0.2, 1);
+}
+
+.btn-journey:hover,
+.btn-journey:focus-visible{
+  background: var(--foam);
+  color: var(--foam);
+}
+
+.btn-journey:hover::before,
+.btn-journey:focus-visible::before{
+  transform: translateY(0%);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .btn-journey::before{ transition: none; }
+}
+
 /* ==========================================================
    FIVE-DAY COAST ADVENTURE — detail page
    ========================================================== */
@@ -1930,34 +2098,46 @@ body.menu-open .menu-panel{
 @media (max-width: 480px){
   .hero-tagline{ font-size: 2.2rem; }
   .hero-support{ font-size: 0.95rem; }
+  :root {--strip-h: 80px;}
 
   .experience-grid{
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
     gap: 12px;
-  }
-  .card-wide, .card-stack-a, .card-stack-b, .card-square-a, .card-square-b{
-    grid-column: 1;
     aspect-ratio: auto;
   }
+  
+  /* Force all cards into a single column */
+  .card-wide,
+  .card-stack-a,
+  .card-stack-b,
+  .card-square-a,
+  .card-square-b{
+    grid-column: 1 !important;
+  }
+  
   .card-wide{ grid-row: 1; }
   .card-stack-a{ grid-row: 2; }
-  .card-stack-b{ grid-row: 3; }
-  .card-square-a{ grid-row: 4; }
-  .card-square-b{ grid-row: 5; }
+  .card-square-a{ grid-row: 3; }
+  .card-square-b{ grid-row: 4; }
+  .card-stack-b{ grid-row: 5; }
 
-  /* Fixed min-height (rather than aspect-ratio) prevents the
-     numeral/icon/heading/copy stack from ever compressing into
-     an overlap on short screens. */
-  .experience-card{ min-height: 220px; }
+  /* Break the stack container into individual grid items */
+  .experience-stack { 
+    display: contents !important;
+    gap: 0;
+  }
+
+  .experience-card{ 
+    min-height: 220px; 
+    aspect-ratio: auto;
+  }
   .experience-card-copy{ padding: 20px 20px; gap: 6px; }
   .card-number{ margin-bottom: 2px; }
   .experience-icon{ width: 22px; height: 22px; margin-bottom: 4px; }
   .experience-card-copy h3{ font-size: 1.25rem; line-height: 1.15; margin-bottom: 6px; }
   .experience-card-copy p{ font-size: 0.82rem; max-width: 28ch; margin-bottom: 8px; }
 
-  /* Full width now, not a small square — restore normal card
-     text sizing instead of the compact desktop-stack sizing. */
   .experience-stack .experience-card{ min-height: 220px; flex: none; }
   .experience-stack .experience-card-copy{ padding: 20px 20px; gap: 6px; }
   .experience-stack .card-number{ font-size: 0.68rem; }
@@ -1989,4 +2169,549 @@ body.menu-open .menu-panel{
   .reef-cta-title{ font-size: 1.6rem; max-width: none; }
   .nav-logo{ height: 28px; }
   .nav-inner{ padding: 0 24px; }
+}
+
+/* ==========================================================
+   STRIP IMAGE DRIFT — slow right-to-left glide on the
+   background photo only (the text label stays fixed).
+   ========================================================== */
+.journey-strip,
+.guest-corner-strip {
+  background-size: cover;
+  background-position: 0% center;
+  animation: stripDrift 30s ease-in-out infinite;
+}
+
+@keyframes stripDrift {
+  0%, 100% { background-position: 0% center; }
+  50%      { background-position: 100% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-strip,
+  .guest-corner-strip {
+    animation: none;
+  }
+}
+
+/* ==========================================================
+   JOURNEY MODAL — 3-Step Form
+   Matches Palm & Tide's colour language and typography
+   ========================================================== */
+
+/* Overlay */
+.journey-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(12, 22, 24, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}
+
+.journey-modal-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s ease, visibility 0s linear 0s;
+}
+
+/* Modal card */
+.journey-modal {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--foam);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(12, 22, 24, 0.25);
+  padding: 48px 40px 40px;
+  transform: translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.journey-modal-overlay.is-open .journey-modal {
+  transform: translateY(0);
+}
+
+/* Close button */
+.journey-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-soft);
+  padding: 6px;
+  border-radius: 50%;
+  transition: color 0.25s ease, background 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.journey-modal-close:hover {
+  color: var(--ink);
+  background: rgba(18, 40, 42, 0.06);
+}
+
+/* Progress indicator */
+.journey-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 36px;
+  padding: 0 20px;
+}
+
+.journey-progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(18, 40, 42, 0.12);
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.journey-progress-step.is-active .progress-dot {
+  background: var(--brass);
+  box-shadow: 0 0 0 4px rgba(176, 141, 87, 0.15);
+}
+
+.journey-progress-step.is-complete .progress-dot {
+  background: var(--tide);
+}
+
+.progress-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(18, 40, 42, 0.35);
+  transition: color 0.35s ease;
+  white-space: nowrap;
+}
+
+.journey-progress-step.is-active .progress-label,
+.journey-progress-step.is-complete .progress-label {
+  color: var(--ink);
+}
+
+.journey-progress-line {
+  width: 48px;
+  height: 1px;
+  background: rgba(18, 40, 42, 0.12);
+  margin: 0 8px;
+  margin-bottom: 20px;
+  transition: background 0.35s ease;
+}
+
+.journey-progress-line.is-complete {
+  background: var(--tide);
+}
+
+/* Steps */
+.journey-step {
+  display: none;
+  animation: stepIn 0.4s ease;
+}
+
+.journey-step.is-active {
+  display: block;
+}
+
+@keyframes stepIn {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.journey-step-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  line-height: 1.2;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.journey-step-subtitle {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 32px;
+}
+
+/* Form fields */
+.journey-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.journey-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.journey-field label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+}
+
+.field-hint {
+  font-weight: 400;
+  opacity: 0.6;
+  font-size: 0.72rem;
+}
+
+.journey-field input[type="text"],
+.journey-field input[type="email"],
+.journey-field input[type="tel"],
+.journey-field select,
+.journey-field textarea {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 12px 16px;
+  border: 1px solid rgba(18, 40, 42, 0.15);
+  border-radius: 8px;
+  background: white;
+  color: var(--ink);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  outline: none;
+}
+
+.journey-field input:focus,
+.journey-field select:focus,
+.journey-field textarea:focus {
+  border-color: var(--brass);
+  box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.08);
+}
+
+.journey-field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2312282A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.journey-field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.journey-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Package selection cards */
+.journey-package-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.journey-package-option {
+  cursor: pointer;
+}
+
+.journey-package-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.package-option-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1.5px solid rgba(18, 40, 42, 0.12);
+  border-radius: 8px;
+  transition: border-color 0.25s ease, background 0.25s ease;
+  background: white;
+}
+
+.journey-package-option input:checked + .package-option-card {
+  border-color: var(--brass);
+  background: rgba(176, 141, 87, 0.04);
+}
+
+/* Signature package — spans the full row and carries a badge so it
+   reads as the recommended choice among the five options. */
+.journey-package-option.is-featured {
+  grid-column: 1 / -1;
+}
+
+.journey-package-option.is-featured .package-option-card {
+  border-color: rgba(176, 141, 87, 0.55);
+  background: rgba(176, 141, 87, 0.07);
+}
+
+.journey-package-option.is-featured input:checked + .package-option-card {
+  border-color: var(--brass);
+  background: rgba(176, 141, 87, 0.12);
+}
+
+.package-option-badge {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.package-option-name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.package-option-desc {
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+/* Toggle buttons */
+.journey-toggle-group {
+  display: flex;
+  gap: 10px;
+}
+
+.journey-toggle {
+  flex: 1;
+  cursor: pointer;
+}
+
+.journey-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.journey-toggle span {
+  display: block;
+  text-align: center;
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  border: 1.5px solid rgba(18, 40, 42, 0.12);
+  border-radius: 8px;
+  background: white;
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.journey-toggle input:checked + span {
+  border-color: var(--tide);
+  background: rgba(27, 75, 74, 0.05);
+  color: var(--tide);
+  font-weight: 500;
+}
+
+/* Step actions */
+.journey-step-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 36px;
+  gap: 14px;
+}
+
+.journey-btn-next,
+.journey-btn-submit {
+  background: var(--ink);
+  color: var(--foam);
+  border: none;
+  margin-left: auto;
+}
+
+.journey-btn-next:hover,
+.journey-btn-submit:hover {
+  background: var(--brass);
+}
+
+.journey-btn-back {
+  background: none;
+  border: 1px solid rgba(18, 40, 42, 0.2);
+  color: var(--ink-soft);
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+}
+
+.journey-btn-back:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* Submit button states */
+.journey-btn-submit {
+  position: relative;
+  min-width: 200px;
+}
+
+.submit-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(250, 247, 241, 0.3);
+  border-top-color: var(--foam);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-left: 10px;
+}
+
+.journey-btn-submit.is-loading .submit-text {
+  opacity: 0.6;
+}
+
+.journey-btn-submit.is-loading .submit-spinner {
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Summary (Step 3) */
+.journey-summary {
+  background: rgba(18, 40, 42, 0.03);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.journey-summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(18, 40, 42, 0.06);
+}
+
+.journey-summary-item:last-child {
+  border-bottom: none;
+}
+
+.journey-summary-label {
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+.journey-summary-value {
+  color: var(--ink);
+  font-weight: 500;
+  text-align: right;
+  max-width: 60%;
+}
+
+/* Assurance */
+.journey-assurance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* Success state */
+.journey-success {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+  animation: stepIn 0.4s ease;
+}
+
+.journey-success.is-visible {
+  display: block;
+}
+
+.journey-success-icon {
+  margin-bottom: 20px;
+}
+
+.journey-btn-close-success {
+  margin-top: 28px;
+  background: var(--ink);
+  color: var(--foam);
+}
+
+/* Body scroll lock */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* ==========================================================
+   RESPONSIVE — Modal
+   ========================================================== */
+@media (max-width: 600px) {
+  .journey-modal {
+    padding: 36px 24px 32px;
+    max-height: 90vh;
+  }
+
+  .journey-progress {
+    gap: 0;
+  }
+
+  .progress-label {
+    font-size: 0.58rem;
+  }
+
+  .journey-progress-line {
+    width: 28px;
+  }
+
+  .journey-field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-package-options {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-toggle-group {
+    flex-direction: column;
+  }
+
+  .journey-step-actions {
+    flex-direction: column;
+  }
+
+  .journey-btn-next,
+  .journey-btn-submit {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .journey-btn-back {
+    width: 100%;
+    text-align: center;
+    order: 2;
+  }
 }

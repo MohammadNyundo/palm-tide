@@ -17,6 +17,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -24,7 +26,7 @@
 <header class="site-nav" id="siteNav">
   <div class="nav-inner">
     <a href="#top" class="nav-brand">
-      <img class="nav-logo" src="assets/images/palm-tide-mark.png" alt="Palm &amp; Tide">
+      <img class="nav-logo" src="assets/images/palm-tide-mark.png" alt="Palm &amp; Tide" width="120" height="30" decoding="async">
       <span class="nav-brand-name">Palm &amp; Tide</span>
     </a>
 
@@ -42,29 +44,29 @@
   <div class="menu-scrim" id="menuScrim" aria-hidden="true"></div>
   <aside class="menu-panel" role="dialog" aria-modal="true" aria-label="Site menu">
     <nav class="menu-links">
-      <a href="#experiences"><span>01</span>Experiences</a>
-      <a href="destinations.html"><span>02</span>Destinations</a>
-      <a href="#stories"><span>03</span>Stories</a>
-      <a href="about.html"><span>04</span>About</a>
-      <a href="#contact"><span>05</span>Let&rsquo;s Curate Your Stay</a>
+      <a href="#top"><span>01</span>Home</a>
+      <a href="#about-story"><span>02</span>About</a>
+      <a href="#stories"><span>03</span>Testimonials</a>
+      <a href="#contact"><span>04</span>Contact</a>
     </nav>
     <div class="menu-footer">
-      <a href="#plan" class="btn btn-solid">Begin Your Journey</a>
+      <a href="five-day-coast-adventure.html" class="btn btn-journey" data-open-journey>Begin Your Journey</a>
       <p class="menu-meta">Palm &amp; Tide · Diani, Kenya</p>
     </div>
   </aside>
 </div>
 
+
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
 
   <div class="hero-media" id="heroMedia">
-    <img
+    <img fetchpriority="high"
       class="hero-photo"
       id="heroPhoto"
       src="assets/images/hut2.png"
       alt="Aerial view of a palm-fringed beach in Diani, Kenya — thatched huts along the tree line, white sand meeting turquoise water, and swimmers paddling near a reef"
-      onerror="this.style.opacity=0;">
+      onerror="this.style.opacity=0;" decoding="async">
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-foam" aria-hidden="true"></div>
   </div>
@@ -73,7 +75,7 @@
     <div class="hero-content" id="heroContent">
       <h1 class="hero-tagline">Where Ocean Meets Culture.</h1>
       <p class="hero-support">Thoughtfully curated journeys along Kenya's coast, inspired by the people who call it home.</p>
-      <a href="#plan" class="btn btn-solid hero-btn">Begin Your Journey</a>
+      <a href="#plan" class="btn btn-journey hero-btn" data-open-journey>Begin Your Journey</a>
     </div>
 
     <button class="hero-anchor" id="scrollCue" aria-label="Continue to the next section">
@@ -94,7 +96,7 @@
 
     <div class="about-visual">
       <div class="about-image">
-        <img src="assets/images/carribean4.png" alt="People connecting on Kenya's coast" onerror="this.style.opacity=0;">
+        <img loading="lazy" decoding="async" src="assets/images/carribean4.png" alt="People connecting on Kenya's coast" onerror="this.style.opacity=0;">
       </div>
       <p class="about-caption">
         <span class="about-caption-kicker">Diani &middot; Kenya</span>
@@ -145,8 +147,8 @@
 
             <!-- 01 -->
             <a href="stay-by-the-tide.html"
-               class="experience-card card-wide"
-               style="background-image:url('assets/images/bahati4.jpg');">
+               class="experience-card card-wide lazy-bg"
+               data-bg="assets/images/villa3.jpeg">
 
                 <div class="experience-card-tint"></div>
 
@@ -185,8 +187,8 @@
             <div class="experience-stack">
 
                 <a href="find-your-style.html"
-                   class="experience-card card-stack-a"
-                   style="background-image:url('assets/images/wear.png');">
+                   class="experience-card card-stack-a lazy-bg"
+                   data-bg="assets/images/wear.png">
 
                     <div class="experience-card-tint"></div>
 
@@ -220,10 +222,10 @@
                     </div>
                 </a>
 
-                <a href="https://wa.me/254700000000?text=Hi%20Palm%20%26%20Tide%2C%20tell%20me%20more%20about%20the%20surprise%20treat%21"
+                <a href="https://wa.me/254700009988?text=Hi%20Palm%20%26%20Tide%2C%20tell%20me%20more%20about%20the%20surprise%20treat%21"
                    target="_blank" rel="noopener"
-                   class="experience-card card-stack-b"
-                   style="background-image:url('assets/images/scum.png');">
+                   class="experience-card card-stack-b lazy-bg"
+                   data-bg="assets/images/kaya.png">
 
                     <div class="experience-card-tint"></div>
 
@@ -234,7 +236,7 @@
                     </div>
 
                     <div class="experience-card-copy">
-                        <span class="card-number">02b</span>
+                        <span class="card-number">05</span>
                         <span class="experience-icon">
                             <svg viewBox="0 0 20 20">
                                 <path d="M10 2l2.2 5 5.3.5-4 3.6 1.2 5.2L10 13.6l-4.7 2.7 1.2-5.2-4-3.6 5.3-.5Z"
@@ -258,8 +260,8 @@
 
             <!-- 03 -->
             <a href="follow-the-tide.html"
-               class="experience-card card-square-a"
-               style="background-image:url('assets/images/jahazi2.png');">
+               class="experience-card card-square-a lazy-bg"
+               data-bg="assets/images/jahazi2.png">
 
                 <div class="experience-card-tint"></div>
 
@@ -292,8 +294,8 @@
 
             <!-- 04 -->
             <a href="meet-the-coast.html"
-               class="experience-card card-square-b"
-               style="background-image:url('assets/images/meet.png');">
+               class="experience-card card-square-b lazy-bg"
+               data-bg="assets/images/meet.png">
 
                 <div class="experience-card-tint"></div>
 
@@ -326,7 +328,7 @@
 
         </div>
     </div>
-    <a href="five-day-coast-adventure.html" class="experiences-explore-button">
+    <a href="five-day-coast-adventure.html" class="experiences-explore-button btn-journey">
         Explore The Journey.
         <span aria-hidden="true">→</span>
     </a>
@@ -344,21 +346,27 @@
 
     <div class="guest-corner-grid">
       <blockquote class="guest-card">
-        <div class="guest-card-avatar" aria-hidden="true"></div>
+        <div class="guest-card-avatar">
+          <img src="https://i.pravatar.cc/160?img=12" alt="Bob, guest from the United Kingdom" loading="lazy">
+        </div>
         <p>We came for the beaches and left having eaten dinner with a family in Kwale we still write to.</p>
-        United Kingdom &middot; 6 Nights
+        Bob, United Kingdom &middot; 6 Nights
       </blockquote>
 
       <blockquote class="guest-card">
-        <div class="guest-card-avatar" aria-hidden="true"></div>
+        <div class="guest-card-avatar">
+          <img src="https://i.pravatar.cc/160?img=47" alt="Karen, guest from Germany" loading="lazy">
+        </div>
         <p>If you&rsquo;re visiting Diani for the first time, book the 5-Day Diani Adventure&mdash;it saved us weeks of planning.</p>
-        Germany &middot; 5 Nights
+        Karen, Germany &middot; 5 Nights
       </blockquote>
 
       <blockquote class="guest-card">
-        <div class="guest-card-avatar" aria-hidden="true"></div>
+        <div class="guest-card-avatar">
+          <img src="https://i.pravatar.cc/160?img=65" alt="Sade, guest from South Africa" loading="lazy">
+        </div>
         <p>We gave love, we got love in return. That&rsquo;s the only way I know how to describe Diani now.</p>
-        South Africa &middot; 7 Nights
+        Sade, South Africa &middot; 7 Nights
       </blockquote>
     </div>
 
@@ -393,7 +401,7 @@
     <div class="reef-block reef-block-cta">
       <h3 class="reef-cta-title">We've already planned it.</h3>
       <p class="reef-cta-copy">All you have to do is arrive.</p>
-      <a href="five-day-coast-adventure.html" class="btn btn-shore">Begin Your Journey <span aria-hidden="true">&rarr;</span></a>
+      <a href="#" class="btn btn-journey" data-open-journey>Begin Your Journey <span aria-hidden="true">&rarr;</span></a>
     </div>
  
     <div class="reef-block reef-block-blank" aria-hidden="true"></div>
@@ -401,9 +409,9 @@
     <div class="reef-block reef-block-social">
       <span class="reef-social-label">Follow Along</span>
       <nav class="reef-social-links">
-        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/254700000000" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="mailto:hello@palmandtide.com">Email</a>
+        <a href="https://www.tiktok.com/@palmtideexperience?_r=1&amp;_t=ZS-988kCqxU9B6" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://wa.me/254700009988" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:hello.palmtides@gmail.com">Email</a>
       </nav>
     </div>
   </div>
@@ -414,6 +422,261 @@
     <p class="footer-meta">Palm &amp; Tide · Diani, Kenya · &copy; <span id="footerYear"></span></p>
   </div>
 </footer>
+
+<!-- ================================================================
+     BEGIN YOUR JOURNEY — 3-Step Modal
+     ================================================================ -->
+<div class="journey-modal-overlay" id="journeyModal" aria-hidden="true">
+  <div class="journey-modal" role="dialog" aria-modal="true" aria-labelledby="journeyModalTitle">
+    
+    <!-- Close button -->
+    <button class="journey-modal-close" id="journeyModalClose" aria-label="Close modal">
+      <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <!-- Progress indicator -->
+    <div class="journey-progress" aria-hidden="true">
+      <div class="journey-progress-step is-active" data-progress="1">
+        <span class="progress-dot"></span>
+        <span class="progress-label">About You</span>
+      </div>
+      <div class="journey-progress-line"></div>
+      <div class="journey-progress-step" data-progress="2">
+        <span class="progress-dot"></span>
+        <span class="progress-label">Your Journey</span>
+      </div>
+      <div class="journey-progress-line"></div>
+      <div class="journey-progress-step" data-progress="3">
+        <span class="progress-dot"></span>
+        <span class="progress-label">Confirm</span>
+      </div>
+    </div>
+
+    <form id="journeyForm" action="https://formspree.io/f/xlgqjpny" method="POST">
+      
+      <!-- ============ STEP 1: Basic Information ============ -->
+      <div class="journey-step is-active" data-step="1">
+        <h2 class="journey-step-title" id="journeyModalTitle">Tell Us About Yourself</h2>
+        <p class="journey-step-subtitle">This helps us tailor your package more exclusively.</p>
+        
+        <div class="journey-field-group">
+          <div class="journey-field">
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. Sarah Williams" required>
+          </div>
+          
+          <div class="journey-field">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="sarah@example.com" required>
+          </div>
+          
+          <div class="journey-field">
+            <label for="phone">Phone Number (with country code) *</label>
+            <input type="tel" id="phone" name="phone" placeholder="e.g. +254 712 345 678" required>
+          </div>
+          
+          <div class="journey-field-row">
+            <div class="journey-field journey-field-half">
+              <label for="numPeople">Number of People *</label>
+              <select id="numPeople" name="numPeople" required>
+                <option value="" disabled selected>Select</option>
+                <option value="1">Just Me</option>
+                <option value="2">2 People</option>
+                <option value="3">3 People</option>
+                <option value="4">4 People</option>
+                <option value="5">5 People</option>
+                <option value="6+">6+ People</option>
+              </select>
+            </div>
+            
+            <div class="journey-field journey-field-half">
+              <label for="numDays">How Many Days? *</label>
+              <select id="numDays" name="numDays" required>
+                <option value="" disabled selected>Select</option>
+                <option value="1-2">1–2 Days</option>
+                <option value="3-4">3–4 Days</option>
+                <option value="5">5 Days (Full Week Coastal)</option>
+                <option value="6-7">6–7 Days</option>
+                <option value="8+">8+ Days</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-step-actions">
+          <button type="button" class="btn journey-btn-next" data-next="2">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ============ STEP 2: Journey Preferences ============ -->
+      <div class="journey-step" data-step="2">
+        <h2 class="journey-step-title">Your Journey Preferences</h2>
+        <p class="journey-step-subtitle">Tell us what moves you. We'll handle the rest.</p>
+        
+        <div class="journey-field-group">
+          
+          <!-- Package selection -->
+          <div class="journey-field">
+            <label>Which package speaks to what you're planning? *</label>
+            <div class="journey-package-options">
+              <label class="journey-package-option">
+                <input type="radio" name="packageInterest" value="The 3-Day Diani Escape" required>
+                <span class="package-option-card">
+                  <span class="package-option-name">The 3-Day Diani Escape</span>
+                  <span class="package-option-desc">For limited time. Perfect for long weekends and short coastal getaways.</span>
+                </span>
+              </label>
+              <label class="journey-package-option is-featured">
+                <input type="radio" name="packageInterest" value="The 5-Day Diani Adventure">
+                <span class="package-option-card">
+                  <span class="package-option-badge">★ You Are Here</span>
+                  <span class="package-option-name">The 5-Day Diani Adventure</span>
+                  <span class="package-option-desc">Our signature journey — what we recommend to most first-time visitors.</span>
+                </span>
+              </label>
+              <label class="journey-package-option">
+                <input type="radio" name="packageInterest" value="The 7-Day Diani Immersion">
+                <span class="package-option-card">
+                  <span class="package-option-name">The 7-Day Diani Immersion</span>
+                  <span class="package-option-desc">For travellers who want to slow down and enjoy Diani at a relaxed pace.</span>
+                </span>
+              </label>
+              <label class="journey-package-option">
+                <input type="radio" name="packageInterest" value="Family Journeys">
+                <span class="package-option-card">
+                  <span class="package-option-name">Family Journeys</span>
+                  <span class="package-option-desc">Actually planned around children and parents — not just extra beds.</span>
+                </span>
+              </label>
+              <label class="journey-package-option">
+                <input type="radio" name="packageInterest" value="Team Building">
+                <span class="package-option-card">
+                  <span class="package-option-name">Team Building</span>
+                  <span class="package-option-desc">Group retreats built for teams, not tourists.</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Yes/No toggles -->
+          <div class="journey-field">
+            <label>Do you want help finding accommodation?</label>
+            <div class="journey-toggle-group">
+              <label class="journey-toggle">
+                <input type="radio" name="needAccommodation" value="Yes" checked>
+                <span>Yes, please</span>
+              </label>
+              <label class="journey-toggle">
+                <input type="radio" name="needAccommodation" value="No">
+                <span>No, I've got it covered</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="journey-field">
+            <label>Do you want help finding what to wear? <span class="field-hint">(Coastal fashion & accessories)</span></label>
+            <div class="journey-toggle-group">
+              <label class="journey-toggle">
+                <input type="radio" name="needStyle" value="Yes">
+                <span>Yes, style me</span>
+              </label>
+              <label class="journey-toggle">
+                <input type="radio" name="needStyle" value="No" checked>
+                <span>No, thank you</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="journey-field">
+            <label>Are you into water sports? <span class="field-hint">(Snorkelling, diving, kayaking)</span></label>
+            <div class="journey-toggle-group">
+              <label class="journey-toggle">
+                <input type="radio" name="waterSports" value="Yes">
+                <span>Absolutely</span>
+              </label>
+              <label class="journey-toggle">
+                <input type="radio" name="waterSports" value="No" checked>
+                <span>Not really</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="journey-field">
+            <label>Wanna ride an E-bike as you meet the native coastal people?</label>
+            <div class="journey-toggle-group">
+              <label class="journey-toggle">
+                <input type="radio" name="ebikeInterest" value="Yes">
+                <span>Sounds amazing</span>
+              </label>
+              <label class="journey-toggle">
+                <input type="radio" name="ebikeInterest" value="No" checked>
+                <span>Maybe another time</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Additional notes -->
+          <div class="journey-field">
+            <label for="specialRequests">Anything else we should know?</label>
+            <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Dietary needs, accessibility requirements, special occasions, or anything else on your mind..."></textarea>
+          </div>
+        </div>
+
+        <div class="journey-step-actions">
+          <button type="button" class="btn journey-btn-back" data-back="1">← Back</button>
+          <button type="button" class="btn journey-btn-next" data-next="3">Review →</button>
+        </div>
+      </div>
+
+      <!-- ============ STEP 3: Confirm & Submit ============ -->
+      <div class="journey-step" data-step="3">
+        <h2 class="journey-step-title">Almost There</h2>
+        <p class="journey-step-subtitle">Review your details and we'll get back to you with a tailored quotation within 24 hours.</p>
+        
+        <div class="journey-summary" id="journeySummary">
+          <!-- Dynamically filled by JS -->
+        </div>
+
+        <p class="journey-assurance">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+          We'll get back to you with a personalised quotation. No spam, ever.
+        </p>
+
+        <!-- Hidden honeypot for spam protection -->
+        <input type="text" name="_gotcha" style="display:none">
+        
+        <!-- Redirect after submission -->
+        <input type="hidden" name="_subject" value="New Journey Request — Palm & Tide">
+        <input type="hidden" name="_next" value="">
+
+        <div class="journey-step-actions">
+          <button type="button" class="btn journey-btn-back" data-back="2">← Back</button>
+          <button type="submit" class="btn journey-btn-submit" id="journeySubmit">
+            <span class="submit-text">Send & Receive Your Quotation</span>
+            <span class="submit-spinner" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- Success state (hidden by default) -->
+    <div class="journey-success" id="journeySuccess" aria-hidden="true">
+      <div class="journey-success-icon">
+        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="var(--brass)" stroke-width="1.5">
+          <circle cx="24" cy="24" r="22"/>
+          <path d="M14 24l7 7 13-13" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="journey-step-title">Thank You</h2>
+      <p class="journey-step-subtitle">Your journey has already begun. We'll curate something special and get back to you with a quotation within 24 hours.</p>
+      <button class="btn journey-btn-close-success">Close</button>
+    </div>
+
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
