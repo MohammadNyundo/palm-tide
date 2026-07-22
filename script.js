@@ -221,6 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const journeyModal = document.getElementById('journeyModal');
 
   if (journeyModal) {
+    // Every submission also goes to this second Formspree endpoint,
+    // in addition to whatever the form's own `action` attribute is,
+    // so leads land in both inboxes.
+    const JOURNEY_FORM_SECONDARY_ACTION = 'https://formspree.io/f/mrenlgkd';
     const journeyForm = document.getElementById('journeyForm');
     const journeySteps = Array.from(journeyModal.querySelectorAll('.journey-step'));
     const progressSteps = Array.from(journeyModal.querySelectorAll('.journey-progress-step'));
@@ -371,13 +375,29 @@ document.addEventListener('DOMContentLoaded', () => {
         journeySubmit.disabled = true;
 
         try {
-          const response = await fetch(journeyForm.action, {
-            method: 'POST',
-            body: new FormData(journeyForm),
-            headers: { Accept: 'application/json' },
-          });
+          const formData = new FormData(journeyForm);
+          const submissions = await Promise.allSettled([
+            fetch(journeyForm.action, {
+              method: 'POST',
+              body: formData,
+              headers: { Accept: 'application/json' },
+            }),
+            fetch(JOURNEY_FORM_SECONDARY_ACTION, {
+              method: 'POST',
+              body: formData,
+              headers: { Accept: 'application/json' },
+            }),
+          ]);
 
-          if (response.ok) {
+          // Treat it as a success if either endpoint accepted the
+          // submission — one Formspree form having an issue shouldn't
+          // block the user from getting their confirmation, since the
+          // lead still landed somewhere.
+          const anySucceeded = submissions.some(
+            (result) => result.status === 'fulfilled' && result.value.ok
+          );
+
+          if (anySucceeded) {
             journeyForm.style.display = 'none';
             journeyModal.querySelector('.journey-progress').style.display = 'none';
             journeySuccess.classList.add('is-visible');

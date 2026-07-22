@@ -2,6 +2,7 @@
    PALM & TIDE — design tokens
    ========================================================== */
 :root{
+  color-scheme: light;
   --ink:        #12282A;
   --ink-soft:   #274445;
   --sand:       #EDE6D6;
@@ -2506,6 +2507,39 @@ body.menu-open .menu-panel{
   border-radius: 8px;
   transition: border-color 0.25s ease, background 0.25s ease;
   background: white;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  z-index: 0;
+}
+
+/* Hover — same rising-water tide fill as .btn-journey (see that
+   rule's comment for why), so hovering a package option always
+   gives clear, on-brand feedback instead of relying on a subtle
+   border/background tint that forced dark-mode color inversion on
+   some devices was washing out entirely. Distinct from the
+   `:checked`/`.is-featured` states above: those mark "selected" and
+   "recommended" respectively and stay brass; this is purely the
+   transient hover affordance, so it works the same on every card
+   regardless of which of those states it's already in. */
+.package-option-card::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 320%;
+  z-index: -1;
+  background: var(--lagoon);
+  opacity: 0.92;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C60 6 120 54 200 30 C280 6 340 54 400 30 L400 60 L0 60 Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C60 6 120 54 200 30 C280 6 340 54 400 30 L400 60 L0 60 Z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 .journey-package-option input:checked + .package-option-card {
@@ -2529,21 +2563,47 @@ body.menu-open .menu-panel{
   background: rgba(176, 141, 87, 0.12);
 }
 
+.journey-package-option:hover .package-option-card,
+.journey-package-option input:focus-visible + .package-option-card {
+  border-color: var(--lagoon);
+}
+
+.journey-package-option:hover .package-option-card::before,
+.journey-package-option input:focus-visible + .package-option-card::before {
+  transform: translateY(0%);
+}
+
+.journey-package-option:hover .package-option-name,
+.journey-package-option:hover .package-option-desc,
+.journey-package-option:hover .package-option-badge,
+.journey-package-option input:focus-visible + .package-option-card .package-option-name,
+.journey-package-option input:focus-visible + .package-option-card .package-option-desc,
+.journey-package-option input:focus-visible + .package-option-card .package-option-badge {
+  color: var(--foam);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .package-option-card::before{ transition: none; }
+}
+
 .package-option-badge {
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--brass);
+  transition: color 0.25s ease;
 }
 
 .package-option-name {
   font-size: 0.82rem;
   font-weight: 500;
   color: var(--ink);
+  transition: color 0.25s ease;
 }
 
 .package-option-desc {
+  transition: color 0.25s ease;
   font-size: 0.7rem;
   color: var(--ink-soft);
   line-height: 1.4;
