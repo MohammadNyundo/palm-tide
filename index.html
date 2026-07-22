@@ -4,7 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Palm & Tide — Experience Kenya Differently</title>
-<meta name="description" content="Thoughtfully curated stays, Swahili cuisine, island culture and wildlife adventures — Kenya's coast, experienced the way locals live it. Palm & Tide — Diani, Kenya.">
+<meta name="description" content="Curated Diani Beach travel packages — stays, Swahili cuisine and ocean adventures on Kenya's coast, planned for you before you arrive.">
+<link rel="canonical" href="https://palmandtideexperience.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Palm & Tide">
+<meta property="og:title" content="Palm & Tide — Experience Kenya Differently">
+<meta property="og:description" content="Curated Diani Beach travel packages — stays, Swahili cuisine and ocean adventures on Kenya's coast, planned for you before you arrive.">
+<meta property="og:url" content="https://palmandtideexperience.com/">
+<meta property="og:image" content="https://palmandtideexperience.com/assets/images/og.png">
+<meta property="og:image:width" content="1536">
+<meta property="og:image:height" content="1024">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Palm & Tide — Experience Kenya Differently">
+<meta name="twitter:description" content="Curated Diani Beach travel packages — stays, Swahili cuisine and ocean adventures on Kenya's coast, planned for you before you arrive.">
+<meta name="twitter:image" content="https://palmandtideexperience.com/assets/images/og.png">
 
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png">
@@ -19,6 +33,54 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["TravelAgency", "LocalBusiness"],
+      "name": "Palm & Tide",
+      "description": "Curated Diani Beach travel packages — stays, Swahili cuisine and ocean adventures on Kenya's coast, planned for you before you arrive.",
+      "url": "https://palmandtideexperience.com/",
+      "image": "https://palmandtideexperience.com/assets/images/hut2.png",
+      "telephone": "+254700009988",
+      "email": "hello.palmtides@gmail.com",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Diani Beach",
+        "addressRegion": "Kwale County",
+        "addressCountry": "KE"
+      },
+      "areaServed": "Diani Beach, Kenya",
+      "sameAs": [
+        "https://www.tiktok.com/@palmtideexperience"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Diani Beach worth visiting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — Diani is consistently ranked among Africa's best beaches, with soft white sand, calm reef-protected water and a laid-back coastal culture. It rewards travellers who go beyond the resort strip, which is exactly what Palm & Tide is built for."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is 3 days enough in Diani?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Three days is enough for a relaxed introduction — a stay, one ocean excursion and a taste of local culture. For the fuller picture, with style, water and village connection all included, most first-time guests choose our 5-Day Diani Adventure instead."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -26,14 +88,16 @@
 <header class="site-nav" id="siteNav">
   <div class="nav-inner">
     <a href="#top" class="nav-brand">
-      <img class="nav-logo" src="assets/images/palm-tide-mark.png" alt="Palm &amp; Tide" width="120" height="30" decoding="async">
-      <span class="nav-brand-name">Palm &amp; Tide</span>
+      <img class="nav-logo" src="assets/images/logo2.png" alt="Palm &amp; Tide" width="120" height="80" decoding="async">
     </a>
 
     <div class="nav-right">
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="menuOverlay" aria-label="Open menu">
         <span class="menu-toggle-label">Menu</span>
-        <span class="menu-toggle-icon"><span></span><span></span></span>
+        <svg class="menu-toggle-icon" width="24" height="16" viewBox="0 0 24 16" fill="none" aria-hidden="true">
+          <path class="wave-line wave-line-top" d="M1,4 Q6.5,1.8 12,4 Q17.5,6.2 23,4" stroke="#0B93AC" stroke-width="1.6" stroke-linecap="round"/>
+          <path class="wave-line wave-line-bottom" d="M8,12 Q11.75,9.8 15.5,12 Q19.25,14.2 23,12" stroke="#0B93AC" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
       </button>
     </div>
   </div>
@@ -96,7 +160,7 @@
 
     <div class="about-visual">
       <div class="about-image">
-        <img loading="lazy" decoding="async" src="assets/images/carribean4.png" alt="People connecting on Kenya's coast" onerror="this.style.opacity=0;">
+        <img loading="lazy" decoding="async" src="assets/images/about.png" alt="Traditional dhow sailing at sunset off Diani, Kenya" onerror="this.style.opacity=0;">
       </div>
       <p class="about-caption">
         <span class="about-caption-kicker">Diani &middot; Kenya</span>
@@ -383,6 +447,40 @@
         Explore The Journey <span aria-hidden="true">&rarr;</span>
       </a>
       <p class="guest-favourite-note">See the full day-by-day itinerary, what&rsquo;s included, and every package we offer.</p>
+    </div>
+
+    <!-- ============ FAQ ============ -->
+    <div class="guest-faq" id="faq">
+      <p class="section-eyebrow">Good to Know</p>
+      <h2 class="faq-heading">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-question-heading">
+            <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">
+              <span>Is Diani Beach worth visiting?</span>
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7.5l5 5 5-5"/></svg>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1">
+            <div class="faq-answer-inner">
+              <p>Yes — Diani is consistently ranked among Africa's best beaches, with soft white sand, calm reef-protected water and a laid-back coastal culture. It rewards travellers who go beyond the resort strip, which is exactly what Palm &amp; Tide is built for.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question-heading">
+            <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">
+              <span>Is 3 days enough in Diani?</span>
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7.5l5 5 5-5"/></svg>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2">
+            <div class="faq-answer-inner">
+              <p>Three days is enough for a relaxed introduction &mdash; a stay, one ocean excursion and a taste of local culture. For the fuller picture, with style, water and village connection all included, most first-time guests choose our 5-Day Diani Adventure instead.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

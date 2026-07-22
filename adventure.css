@@ -436,6 +436,35 @@
   .adv-terms-grid{ grid-template-columns: 1fr; gap: 44px; }
 }
 
+/* ---------- FAQ ---------- */
+.adv-faq{
+  background: var(--sand-card);
+  padding: 60px 24px;
+}
+
+.adv-faq-frame{
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.adv-faq-label{
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 16px;
+}
+
+.adv-faq-heading{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  color: var(--ink);
+  margin: 0 0 28px;
+}
+
 /* ---------- GOOD TO KNOW ---------- */
 .adv-good{
   background: var(--sand-card);
@@ -551,7 +580,7 @@
   margin-bottom: 4px;
 }
 
-.adv-package-card h4{
+.adv-package-card h3{
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.2rem;

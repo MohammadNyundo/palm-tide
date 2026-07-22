@@ -147,6 +147,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---------------------------------------------------------
+  // FAQ accordion — only the question shows by default; clicking
+  // reveals the full answer. Each item toggles independently
+  // (unlike the itinerary accordion below, opening one doesn't
+  // close the others). Shared markup/classes across every page
+  // that has a FAQ section.
+  // ---------------------------------------------------------
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach((item) => {
+    const question = item.querySelector('.faq-question');
+    if (!question) return;
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.toggle('is-open');
+      question.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+
+  // ---------------------------------------------------------
   // Adventure page — day-by-day itinerary accordion (only runs
   // if the markup exists on this page).
   // ---------------------------------------------------------
@@ -389,6 +406,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------------------------------------------------------
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
+    // Mobile browsers resize the viewport as the address bar shows/hides
+    // on scroll — without this, ScrollTrigger treats that as a real
+    // resize and recalculates/refreshes mid-scroll, which is what made
+    // triggers fire inconsistently (or not at all) on mobile.
+    ScrollTrigger.config({ ignoreMobileResize: true });
 
     if (!prefersReducedMotion) {
       // "Experience Kenya Differently" — the image glides in from
@@ -511,6 +533,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           );
         }
+      }
+
+      // All the trigger positions above are computed the moment this
+      // script runs, using whatever the layout measures at that instant.
+      // Web fonts swapping in (Fraunces/Inter load async) and the hero
+      // photo/lazy images finishing after that reflow the page, so the
+      // pixel offsets ScrollTrigger baked in are stale by the time the
+      // user actually scrolls — on desktop that shows up as the "What
+      // We Offer" cards and testimonials having already finished
+      // animating by the time they're in view; on mobile, where the
+      // layout shift is larger (single-column stacking), the stale
+      // start position can land above the very top of the page, so
+      // ScrollTrigger treats it as already-passed and the cards just
+      // appear with no animation at all. Refreshing once everything
+      // (images + fonts) has actually settled fixes both.
+      window.addEventListener('load', () => ScrollTrigger.refresh());
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => ScrollTrigger.refresh());
       }
     }
   } else {
