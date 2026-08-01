@@ -182,6 +182,539 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---------------------------------------------------------
+  // Things to Do in Diani — package details modal. Only runs if
+  // the markup exists on this page. Card content lives here (not
+  // in the HTML) so every package's copy/price/image is defined
+  // once and reused by both the card face and its modal. Modelled
+  // on the client's own poster layout (highlights / itinerary /
+  // rates / good-to-know) — the modal leads with information, not
+  // the photo, so a guest has enough to decide without leaving
+  // the page.
+  // ---------------------------------------------------------
+  const packageModal = document.getElementById('packageModal');
+
+  if (packageModal) {
+    const PRICE_DISCLAIMER =
+      'Indicative price, converted at ~KES 129 = $1 (today’s rate). Kenya’s standard 16% VAT and a typical 3% card conversion fee may apply depending on payment method — confirmed in your personalised quotation.';
+
+    const PACKAGES = {
+      '3-day': {
+        formValue: 'The 3-Day Diani Escape',
+        image: 'assets/images/funzi.png',
+        imageAlt: 'Traditional dhow and guests wading ashore, Diani, Kenya',
+        duration: '3 Days / 2 Nights',
+        name: 'The 3-Day Diani Escape',
+        keywords: 'Quick Escape &middot; One Signature Excursion &middot; Easy Pace',
+        highlights: [
+          'Two nights at a stay that already feels like home',
+          'One full day on the water — Sunset Mangrove Escape',
+          'Airport transfers both ways, no itinerary rush',
+          'Built for long weekends and short windows off work',
+        ],
+        price: '$86 &ndash; $340',
+        priceExtra: 'Covers 2 nights across our 5 stay categories, plus the excursion below.',
+        includes: [
+          '2 nights at your chosen stay',
+          'Daily breakfast',
+          'Airport transfers, both ways',
+          'The Sunset Mangrove Escape excursion',
+        ],
+        itinerary: [
+          { day: 'Day 1', text: 'Airport pickup, check-in, and an evening to settle in.' },
+          { day: 'Day 2', text: 'Sunset Mangrove Escape — glass-bottom boat, guided snorkelling, then a private sunset cruise through the mangroves.' },
+          { day: 'Day 3', text: 'A final morning on the beach, check-out, and airport transfer.' },
+          { day: 'Add-On', text: 'Prefer something else on the water? Swap in the <a href="follow-the-tide.html">Wasini Dolphin Swim or Chale Island</a> excursion — just ask when you book.' },
+        ],
+        goodToKnow: [
+          { label: 'Pace', value: 'Easy' },
+          { label: 'Group Size', value: '1–6 People' },
+          { label: 'Best Time', value: 'Dec–Mar & Jul–Oct' },
+          { label: 'Ideal For', value: 'Couples, Friends' },
+        ],
+        signature: {
+          label: 'Signature Inclusion',
+          name: 'Sunset Mangrove Escape',
+          image: 'assets/images/sunsetmangro.jpeg',
+          desc: 'Glass-bottom boat, guided snorkelling and a private sunset cruise through the mangroves.',
+          price: 'From $73 for up to 3 guests',
+        },
+      },
+      '5-day': {
+        formValue: 'The 5-Day Diani Adventure',
+        image: 'assets/images/paddle.jpeg',
+        imageAlt: 'Kayak paddler at sunset on the Kongo River, Diani, Kenya',
+        duration: '5 Days / 4 Nights',
+        name: 'The 5-Day Diani Adventure',
+        keywords: 'Curated Stay &middot; Local Style &middot; Dolphins &middot; Village Connection',
+        highlights: [
+          'Our signature journey — four tides in five days',
+          'Curated stay + local styling guide',
+          'Dolphin swim & coral reef snorkelling',
+          'Village e-bike tour with Mijikenda communities',
+          'A surprise, courtesy of Palm & Tide',
+        ],
+        price: '$172 &ndash; $680',
+        priceExtra: 'Covers 4 nights across our 5 stay categories, plus everything below.',
+        includes: [
+          '4 nights at your chosen stay',
+          'Daily breakfast & the welcome meal',
+          'Airport transfers, styling guide, dolphin & snorkelling excursion, village e-bike tour',
+          'A surprise, courtesy of Palm & Tide',
+        ],
+        itinerary: [
+          { day: 'Day 1', text: 'Arrival — airport pickup, check-in, home-prepared Swahili welcome meal.' },
+          { day: 'Day 2', text: 'Discovery — visit local designers for linen, kanga and handcrafted jewellery.' },
+          { day: 'Day 3', text: 'Adventure — sail a traditional jahazi, swim with dolphins, snorkel the coral gardens, sunset cruise back.' },
+          { day: 'Day 4', text: 'Connection — e-bike through Mijikenda’s villages, tea with a local family, traditional coastal dances.' },
+          { day: 'Day 5', text: 'Farewell — a surprise experience, a final beach walk, and airport transfer.' },
+          { day: 'Add-On', text: 'Want more time on the water? Add the <a href="follow-the-tide.html">Kongo River Sunset Cruise or Funzi Island</a> excursion to your days.' },
+        ],
+        goodToKnow: [
+          { label: 'Pace', value: 'Easy, Fully Guided' },
+          { label: 'Group Size', value: '2–12 People' },
+          { label: 'Best Time', value: 'Dec–Mar & Jul–Oct' },
+          { label: 'Ideal For', value: 'Couples, Friends, Families' },
+        ],
+      },
+      '7-day': {
+        formValue: 'The 7-Day Diani Immersion',
+        image: 'assets/images/adventure.png',
+        imageAlt: 'Friends laughing and running on the beach, Diani, Kenya',
+        duration: '7 Days / 6 Nights',
+        name: 'The 7-Day Diani Immersion',
+        keywords: 'Slow Travel &middot; Full Coast Immersion &middot; Marine Park Day Trip',
+        highlights: [
+          'Six nights, no itinerary rush',
+          'A free day built in — just be at your stay',
+          'Full-day Kisite Dolphin Escape to Wasini–Kisite Mpunguti',
+          'Local styling guide & village e-bike tour',
+        ],
+        price: '$258 &ndash; $1,020',
+        priceExtra: 'Covers 6 nights across our 5 stay categories, plus everything below.',
+        includes: [
+          '6 nights at your chosen stay',
+          'Daily breakfast',
+          'Airport transfers, both ways',
+          'Local styling guide & village e-bike tour',
+          'The Kisite Dolphin Escape excursion',
+        ],
+        itinerary: [
+          { day: 'Day 1', text: 'Arrival — airport pickup, check-in, evening to settle in.' },
+          { day: 'Day 2', text: 'Discovery — local designers, linen, kanga and handcrafted jewellery.' },
+          { day: 'Day 3', text: 'Rest day — free time at your stay, beach and pool, no itinerary.' },
+          { day: 'Day 4', text: 'Kisite Dolphin Escape — a full day sailing to Wasini–Kisite Mpunguti for dolphins, snorkelling and a Swahili seafood lunch.' },
+          { day: 'Day 5', text: 'Connection — e-bike through Mijikenda’s villages, tea with a local family.' },
+          { day: 'Day 6', text: 'Free day — your own pace, optional add-ons available.' },
+          { day: 'Day 7', text: 'Farewell — final beach walk, check-out, airport transfer.' },
+          { day: 'Add-On', text: 'Fill a free day with <a href="follow-the-tide.html">Funzi Island</a> or the <a href="meet-the-coast.html">Shimba Hills</a> track — just ask when you book.' },
+        ],
+        goodToKnow: [
+          { label: 'Pace', value: 'Relaxed' },
+          { label: 'Group Size', value: '2–12 People' },
+          { label: 'Best Time', value: 'Dec–Mar & Jul–Oct' },
+          { label: 'Ideal For', value: 'Slow Travellers, Couples, Friends' },
+        ],
+        signature: {
+          label: 'Signature Inclusion',
+          name: 'Kisite Dolphin Escape',
+          image: 'assets/images/kisite.jpeg',
+          desc: 'A full day sailing to Wasini–Kisite Mpunguti: dolphin encounters, snorkelling the reef, and a Swahili seafood lunch.',
+          price: 'From $27 per person',
+        },
+      },
+      family: {
+        formValue: 'Family Journeys',
+        image: 'assets/images/dolphine.jpg',
+        imageAlt: 'Family ocean excursion off Wasini Island, Kenya',
+        duration: 'Flexible Duration',
+        name: 'Family Journeys',
+        keywords: 'Kid-Friendly Pace &middot; Wildlife Day &middot; Family Stays',
+        highlights: [
+          'Kid-friendly pace, family-sized stays',
+          'One full day at a wildlife conservation centre',
+          'Free beach day built in — pool, sand, no rush',
+          'Tell us the kids’ ages, we adjust the pace',
+          'Shown below as a 5-day sample',
+        ],
+        price: 'From $43/night',
+        priceExtra: 'Accommodation-based, across our 5 stay categories — tell us your dates for a full quotation.',
+        includes: [
+          'Your chosen stay, priced per night (family rooms & villas available)',
+          'Daily breakfast',
+          'Airport transfers, both ways',
+          'The Family Wildlife Adventure excursion',
+        ],
+        itinerary: [
+          { day: 'Day 1', text: 'Arrival — check-in, settle in, easy evening at your stay.' },
+          { day: 'Day 2', text: 'Family Wildlife Adventure — guided visit to a leading wildlife conservation centre, giraffe feeding, monkeys and more.' },
+          { day: 'Day 3', text: 'Beach day — free time, pool, sandcastles, no itinerary.' },
+          { day: 'Day 4', text: 'Find Your Style (optional) — light shopping for the family.' },
+          { day: 'Day 5', text: 'Farewell — check-out and airport transfer.' },
+          { day: 'Add-On', text: 'Swap in the <a href="meet-the-coast.html">Shimba Hills</a> wildlife track for another family-friendly day out.' },
+        ],
+        goodToKnow: [
+          { label: 'Pace', value: 'Easy, Kid-Friendly' },
+          { label: 'Group Size', value: 'Any Family Size' },
+          { label: 'Best Time', value: 'Dec–Mar & Jul–Oct' },
+          { label: 'Ideal For', value: 'Families with Children' },
+        ],
+        signature: {
+          label: 'Signature Inclusion',
+          name: 'Family Wildlife Adventure',
+          image: 'assets/images/familyad.jpeg',
+          desc: 'A guided visit to a leading wildlife conservation centre — giraffe feeding, monkeys and more — with pickup and drop-off included.',
+          price: 'From $104 for 2 adults + 2 children',
+        },
+      },
+      team: {
+        formValue: 'Team Building',
+        image: 'assets/images/kongo.png',
+        imageAlt: 'Group boat ride at sunset on the Kongo River, Diani, Kenya',
+        duration: 'Flexible Duration',
+        name: 'Team Building',
+        keywords: 'Group Stays &middot; One Bonding Night &middot; Flexible Pace',
+        highlights: [
+          'Group stays, group rates',
+          'One evening built around a real coastal bonfire',
+          'Coastal walk, hidden caves, snorkelling, boat ride',
+          'We handle the logistics, you handle the team',
+          'Shown below as a 3-day sample',
+        ],
+        price: 'From $43/night',
+        priceExtra: 'Accommodation-based, across our 5 stay categories — tell us your group size for a full quotation.',
+        includes: [
+          'Your chosen stay, priced per night (group rates available)',
+          'Daily breakfast',
+          'Airport transfers, both ways',
+          'A Tide-Led Coastal Escape excursion',
+        ],
+        itinerary: [
+          { day: 'Day 1', text: 'Arrival — group check-in, welcome dinner.' },
+          { day: 'Day 2', text: 'A Tide-Led Coastal Escape — coastal nature walk, hidden caves, snorkelling, a traditional boat ride, beach bonfire dinner.' },
+          { day: 'Day 3', text: 'Farewell — check-out and airport transfer.' },
+          { day: 'Add-On', text: 'Add the <a href="follow-the-tide.html">Kongo River Sunset Cruise</a> for a second evening built around the group.' },
+        ],
+        goodToKnow: [
+          { label: 'Pace', value: 'Flexible, Group-Paced' },
+          { label: 'Group Size', value: '6+ People' },
+          { label: 'Best Time', value: 'Dec–Mar & Jul–Oct' },
+          { label: 'Ideal For', value: 'Teams, Colleagues, Retreats' },
+        ],
+        signature: {
+          label: 'Signature Inclusion',
+          name: 'A Tide-Led Coastal Escape',
+          image: 'assets/images/tide_led.jpeg',
+          desc: 'Coastal nature walk, hidden caves, snorkelling, a traditional boat ride and a beach bonfire dinner.',
+          price: 'From $77 for 2 people sharing',
+        },
+      },
+      romantic: {
+        formValue: 'Romantic Escape',
+        image: 'assets/images/romantic1.jpeg',
+        imageAlt: 'Candlelit beach bonfire for two at dusk, Diani, Kenya',
+        duration: '2 Days',
+        name: 'Romantic Escape',
+        keywords: 'Private Boat Ride &middot; Cave Dinner &middot; Sunset Canoe',
+        highlights: [
+          'Two days built entirely around the two of you',
+          'Private glass-bottom boat ride',
+          'Candlelit dinner inside a coastal cave',
+          'Couples spa session with a private masseuse (Premium)',
+          'Sunset canoe through the mangroves',
+        ],
+        includes: [
+          'Private glass-bottom boat ride',
+          'Cave dinner with a romantic setup',
+          'African Pool / cave swimming',
+          'Sunset canoe or kayak experience',
+          'Beach bonfire dinner with candles',
+          'Couples spa session with a private masseuse (Premium)',
+          'Dedicated experience host',
+        ],
+        itinerary: [
+          { day: 'Day 1', text: 'Private glass-bottom boat ride, optional photography, free time to explore & swim, cave dinner with a romantic setup.' },
+          { day: 'Day 2', text: 'Couples spa session with a private masseuse, African Pool / cave swimming, sunset canoe or kayak, beach bonfire dinner. Photoshoot available on request.' },
+          { day: 'Add-On', text: 'Make it three days: add a private morning on <a href="follow-the-tide.html">Funzi Island</a>, a sandbank just for the two of you.' },
+        ],
+        priceOptions: [
+          { label: 'Standard Escape', price: '$325', desc: 'For 2 guests. Pickup & drop-off within Diani included. Does not include a beachfront stay or spa.' },
+          { label: 'Premium Escape', price: '$468', desc: 'For 2 guests. Adds a beachfront stay (1 night), breakfast, a couples spa session with a private masseuse, and airport/train transfers.' },
+        ],
+        goodToKnow: [
+          { label: 'Pace', value: 'Easy' },
+          { label: 'Booking', value: 'In advance — limited slots' },
+          { label: 'Ideal For', value: 'Honeymoons, Anniversaries' },
+          { label: 'Note', value: 'Drinks & photoshoot not included' },
+        ],
+      },
+      'day-tide-led': {
+        formValue: 'A Tide-Led Coastal Escape',
+        image: 'assets/images/tide_led.jpeg',
+        imageAlt: 'A Tide-Led Coastal Escape, Diani, Kenya',
+        duration: '1 Day',
+        name: 'A Tide-Led Coastal Escape',
+        keywords: 'Hidden Caves &middot; Snorkelling &middot; Beach Bonfire',
+        highlights: [
+          'Coastal nature walk to hidden caves & pools',
+          'Snorkelling among coral & reef life',
+          'Traditional boat ride',
+          'Beach bonfire dinner to close the day',
+        ],
+        priceOptions: [
+          { label: '2 People Sharing', price: '$77', desc: 'Total for 2 guests sharing the experience.' },
+          { label: 'Per Person', price: '$48', desc: 'Booking solo or want individual pricing.' },
+        ],
+        includes: [
+          'Complimentary pickup & drop-off within Diani',
+          'Coastal nature walk & discovery',
+          'Hidden caves & pools',
+          'Snorkelling & swimming',
+          'Traditional boat ride',
+          'Beach bonfire dinner',
+        ],
+        itinerary: [
+          { day: 'Morning', text: 'Pickup, coastal nature walk and discovery of hidden caves & pools.' },
+          { day: 'Midday', text: 'Snorkelling & swimming, then a traditional boat ride.' },
+          { day: 'Evening', text: 'Beach bonfire dinner to close the day, then return to your stay.' },
+        ],
+        goodToKnow: [
+          { label: 'Tide', value: 'Low Tide Experience' },
+          { label: 'Walking', value: 'Moderate' },
+          { label: 'Swimmers', value: 'Confident Swimmers' },
+          { label: 'Bonus', value: 'Photography Opportunities' },
+        ],
+      },
+      'day-kisite': {
+        formValue: 'Kisite Dolphin Escape',
+        image: 'assets/images/kisite.jpeg',
+        imageAlt: 'Kisite Dolphin Escape, Wasini, Kenya',
+        duration: '1 Day',
+        name: 'Kisite Dolphin Escape',
+        keywords: 'Dolphin Encounters &middot; Snorkelling &middot; Island Lunch',
+        highlights: [
+          'Dolphin encounters in the channel',
+          '45–60 minutes snorkelling at Kisite Island',
+          'Swahili-themed lunch included',
+          'Scenic transfer to Wasini (about 1 hour)',
+        ],
+        price: '$27/person',
+        includes: [
+          'Complimentary pickup & drop-off within Diani',
+          'Scenic transfer to Wasini (~55km / 1 hour)',
+          'Change room facilities',
+          '1–2 hour boat ride chasing dolphins',
+          '45–60 minutes snorkelling at Kisite Island',
+          'Swahili-themed lunch',
+        ],
+        itinerary: [
+          { day: 'Morning', text: 'Pickup and scenic transfer to Wasini (about 1 hour).' },
+          { day: 'Midday', text: '1–2 hour boat ride chasing dolphins, then 45–60 minutes snorkelling at Kisite Island.' },
+          { day: 'Afternoon', text: 'Swahili-themed lunch, then return to Diani.' },
+        ],
+        goodToKnow: [
+          { label: 'Transfer', value: '~55km / 1 Hour' },
+          { label: 'What to Bring', value: 'Swimwear & Towel' },
+          { label: 'Subject to', value: 'Weather & Sea Conditions' },
+          { label: 'Ideal For', value: 'Couples, Friends, Families' },
+        ],
+      },
+      'day-mangrove': {
+        formValue: 'Sunset Mangrove Escape',
+        image: 'assets/images/sunsetmangro.jpeg',
+        imageAlt: 'Sunset Mangrove Escape, Diani, Kenya',
+        duration: '1 Day',
+        name: 'Sunset Mangrove Escape',
+        keywords: 'Glass-Bottom Boat &middot; Snorkelling &middot; Sunset Cruise',
+        highlights: [
+          'Glass-bottom boat ride over the reef',
+          'Guided snorkelling with tropical fish',
+          'Private sunset cruise through the mangroves',
+          'Choice of traditional canoe or private kayak',
+        ],
+        price: '$73 for up to 3 guests',
+        includes: [
+          'Complimentary pickup & drop-off within Diani',
+          'Glass-bottom boat ride',
+          'Guided snorkelling',
+          'Private sunset mangrove cruise',
+          'Choice of canoe or kayak',
+          'Professional local guide',
+        ],
+        itinerary: [
+          { day: 'Afternoon', text: 'Pickup, glass-bottom boat ride and guided snorkelling with tropical fish.' },
+          { day: 'Sunset', text: 'Private mangrove cruise by traditional canoe or kayak, then return to your stay.' },
+        ],
+        goodToKnow: [
+          { label: 'Max Group', value: '3 Guests' },
+          { label: 'What to Bring', value: 'Swimwear & Towel' },
+          { label: 'Subject to', value: 'Weather & Tide' },
+          { label: 'Best For', value: 'Small Groups & Couples' },
+        ],
+      },
+      'day-watersports': {
+        formValue: 'Water Sports',
+        image: 'assets/images/sports.jpeg',
+        imageAlt: 'Kayaking at sunset, Diani, Kenya',
+        duration: '1 Day',
+        name: 'Water Sports',
+        keywords: 'Kayaking &middot; Paddleboarding &middot; Snorkelling',
+        highlights: [
+          'Kayaking and stand-up paddleboarding',
+          'Reef snorkelling with full gear included',
+          'Half or full-day options available',
+          'Guided throughout, suits all experience levels',
+        ],
+        price: 'Price on request',
+        priceExtra: 'Rates vary by activity and duration — tell us what you’re after and we’ll quote you directly.',
+        includes: [
+          'Guided kayaking or paddleboarding',
+          'Snorkelling gear',
+          'Local safety guide',
+          'Pickup & drop-off within Diani',
+        ],
+        itinerary: [
+          { day: 'Your Day', text: 'Choose kayaking, paddleboarding, snorkelling or a mix — we build the day around what you want to do.' },
+        ],
+        goodToKnow: [
+          { label: 'Pace', value: 'Flexible' },
+          { label: 'Experience', value: 'All Levels' },
+          { label: 'Duration', value: 'Half or Full-Day' },
+          { label: 'Ideal For', value: 'Friends, Families, Solo' },
+        ],
+      },
+    };
+
+    const packageModalBody = document.getElementById('packageModalBody');
+    const packageCloseButtons = packageModal.querySelectorAll('#packageModalClose');
+    let lastPackageFocusedEl = null;
+
+    const renderPackage = (key) => {
+      const pkg = PACKAGES[key];
+      if (!pkg || !packageModalBody) return;
+
+      const highlightsHtml = pkg.highlights.map((item) => `<li>${item}</li>`).join('');
+
+      const includesHtml = pkg.includes.map((item) => `<li>${item}</li>`).join('');
+
+      const itineraryHtml = pkg.itinerary
+        .map(
+          (step) => `
+        <li>
+          <span class="pkg-modal-itinerary-day">${step.day}</span>
+          <span class="pkg-modal-itinerary-text">${step.text}</span>
+        </li>`
+        )
+        .join('');
+
+      const goodToKnowHtml = pkg.goodToKnow
+        .map(
+          (item) => `
+        <div class="pkg-modal-good-item">
+          <span class="pkg-modal-good-label">${item.label}</span>
+          <span class="pkg-modal-good-value">${item.value}</span>
+        </div>`
+        )
+        .join('');
+
+      const priceHtml = pkg.priceOptions
+        ? `
+        <div class="pkg-modal-price-options">
+          ${pkg.priceOptions
+            .map(
+              (opt) => `
+            <div class="pkg-modal-price-option">
+              <span class="pkg-modal-price-option-label">${opt.label}</span>
+              <span class="pkg-modal-price-option-price">${opt.price}</span>
+              <span class="pkg-modal-price-option-desc">${opt.desc}</span>
+            </div>`
+            )
+            .join('')}
+        </div>
+        <p class="pkg-modal-price-note">${PRICE_DISCLAIMER}</p>`
+        : `
+        <div class="pkg-modal-price-block">
+          <p class="pkg-modal-price">${pkg.price}</p>
+          <p class="pkg-modal-price-note">${pkg.priceExtra ? pkg.priceExtra + ' ' : ''}${PRICE_DISCLAIMER}</p>
+        </div>`;
+
+      const signatureHtml = pkg.signature
+        ? `
+        <div class="pkg-modal-signature">
+          <img src="${pkg.signature.image}" alt="${pkg.signature.name}" loading="lazy">
+          <div class="pkg-modal-signature-body">
+            <span class="pkg-modal-signature-label">${pkg.signature.label}</span>
+            <span class="pkg-modal-signature-name">${pkg.signature.name}</span>
+            <span class="pkg-modal-signature-desc">${pkg.signature.desc}</span>
+            <span class="pkg-modal-signature-price">${pkg.signature.price}</span>
+          </div>
+        </div>`
+        : '';
+
+      packageModalBody.innerHTML = `
+        <div class="pkg-modal-header">
+          <img class="pkg-modal-thumb" src="${pkg.image}" alt="${pkg.imageAlt}" loading="lazy">
+          <div class="pkg-modal-header-text">
+            <p class="pkg-modal-duration">${pkg.duration}</p>
+            <h2 class="pkg-modal-title" id="packageModalTitle">${pkg.name}</h2>
+            <p class="pkg-modal-keywords">${pkg.keywords}</p>
+          </div>
+        </div>
+        <div class="pkg-modal-content">
+          <div class="pkg-modal-highlights-box">
+            <ul class="pkg-modal-highlights">${highlightsHtml}</ul>
+          </div>
+          ${priceHtml}
+          ${signatureHtml}
+          <details class="pkg-modal-reveal">
+            <summary class="pkg-modal-reveal-summary">What&rsquo;s Included</summary>
+            <ul class="pkg-modal-includes">${includesHtml}</ul>
+          </details>
+          <details class="pkg-modal-reveal">
+            <summary class="pkg-modal-reveal-summary">Your Itinerary</summary>
+            <ol class="pkg-modal-itinerary">${itineraryHtml}</ol>
+          </details>
+          <details class="pkg-modal-reveal">
+            <summary class="pkg-modal-reveal-summary">Good to Know</summary>
+            <div class="pkg-modal-good-grid">${goodToKnowHtml}</div>
+          </details>
+          <div class="pkg-modal-actions">
+            <button type="button" class="btn btn-journey" data-open-journey data-package-value="${pkg.formValue}">Choose Your Stay &amp; Begin &rarr;</button>
+          </div>
+        </div>
+      `;
+    };
+
+    const openPackageModal = (key) => {
+      lastPackageFocusedEl = document.activeElement;
+      renderPackage(key);
+      packageModal.classList.add('is-open');
+      packageModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+    };
+
+    const closePackageModal = () => {
+      packageModal.classList.remove('is-open');
+      packageModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      if (lastPackageFocusedEl) lastPackageFocusedEl.focus({ preventScroll: true });
+    };
+
+    document.querySelectorAll('[data-package]').forEach((card) => {
+      card.addEventListener('click', () => openPackageModal(card.dataset.package));
+    });
+
+    packageCloseButtons.forEach((btn) => btn.addEventListener('click', closePackageModal));
+
+    packageModal.addEventListener('click', (e) => {
+      if (e.target === packageModal) closePackageModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && packageModal.classList.contains('is-open')) closePackageModal();
+    });
+  }
+
+  // ---------------------------------------------------------
   // Lazy-loaded background images — mosaic cards on the "What
   // We Offer" grid use CSS background-image rather than <img>,
   // so native loading="lazy" can't reach them. This defers the
@@ -300,7 +833,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ['Group Size', numPeopleLabel],
         ['Duration', numDaysLabel],
         ['Package Interest', data.get('packageInterest') || 'Not selected'],
-        ['Accommodation Help', data.get('needAccommodation') || 'No'],
+        ['Accommodation Preference', data.get('accommodationType') || 'Not specified'],
         ['Styling Help', data.get('needStyle') || 'No'],
         ['Water Sports', data.get('waterSports') || 'No'],
         ['E-Bike Ride', data.get('ebikeInterest') || 'No'],
@@ -332,12 +865,27 @@ document.addEventListener('DOMContentLoaded', () => {
       if (lastFocusedEl) lastFocusedEl.focus({ preventScroll: true });
     };
 
-    // Open triggers — every "Begin Your Journey" CTA on the page.
-    document.querySelectorAll('[data-open-journey]').forEach((trigger) => {
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        openModal();
-      });
+    // Open triggers — every "Begin Your Journey" CTA on the page, plus
+    // any CTA injected later (e.g. from the package details modal), so
+    // this uses delegation on document rather than a one-time
+    // querySelectorAll snapshot. A trigger can optionally carry
+    // data-package-value to pre-select that package's radio option —
+    // used by the package modal's "Choose Your Stay" button so a
+    // guest who picked a package doesn't have to pick it again.
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-open-journey]');
+      if (!trigger) return;
+      e.preventDefault();
+
+      const packageValue = trigger.dataset.packageValue;
+      if (packageValue && journeyForm) {
+        const radio = journeyForm.querySelector(
+          `input[name="packageInterest"][value="${CSS.escape(packageValue)}"]`
+        );
+        if (radio) radio.checked = true;
+      }
+
+      openModal();
     });
 
     // Close triggers.

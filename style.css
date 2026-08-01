@@ -2544,23 +2544,26 @@ body.menu-open .menu-panel{
 
 .journey-package-option input:checked + .package-option-card {
   border-color: var(--brass);
-  background: rgba(176, 141, 87, 0.04);
+  background: rgba(176, 141, 87, 0.1);
 }
 
 /* Signature package — spans the full row and carries a badge so it
-   reads as the recommended choice among the five options. */
+   reads as the recommended choice among the five options. Border
+   tint only when unchecked — a filled background is reserved for
+   ":checked" so "recommended" and "selected" never look the same
+   card state (a filled-but-unchecked featured card was previously
+   indistinguishable from an actual selection). */
 .journey-package-option.is-featured {
   grid-column: 1 / -1;
 }
 
 .journey-package-option.is-featured .package-option-card {
   border-color: rgba(176, 141, 87, 0.55);
-  background: rgba(176, 141, 87, 0.07);
 }
 
 .journey-package-option.is-featured input:checked + .package-option-card {
   border-color: var(--brass);
-  background: rgba(176, 141, 87, 0.12);
+  background: rgba(176, 141, 87, 0.16);
 }
 
 .journey-package-option:hover .package-option-card,

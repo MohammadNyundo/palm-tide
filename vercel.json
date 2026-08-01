@@ -1,5 +1,6 @@
 {
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true }
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/five-day-coast-adventure.html", "destination": "/things-to-do-in-diani.html", "permanent": true }
   ]
 }
