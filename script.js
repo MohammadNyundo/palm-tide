@@ -200,8 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const PACKAGES = {
       '3-day': {
         formValue: 'The 3-Day Diani Escape',
-        image: 'assets/images/funzi.png',
-        imageAlt: 'Traditional dhow and guests wading ashore, Diani, Kenya',
+        image: 'assets/images/ngalawa.jpg',
+        imageAlt: 'Traditional dhow sailing the Diani coastline, Kenya',
         duration: '3 Days / 2 Nights',
         name: 'The 3-Day Diani Escape',
         keywords: 'Quick Escape &middot; One Signature Excursion &middot; Easy Pace',
@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
           'Built for long weekends and short windows off work',
         ],
         price: '$86 &ndash; $340',
-        priceExtra: 'Covers 2 nights across our 5 stay categories, plus the excursion below.',
+        priceExtra: 'Covers 2 nights across the stays we offer, plus the excursion below.',
         includes: [
           '2 nights at your chosen stay',
           'Daily breakfast',
@@ -241,8 +241,8 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       '5-day': {
         formValue: 'The 5-Day Diani Adventure',
-        image: 'assets/images/paddle.jpeg',
-        imageAlt: 'Kayak paddler at sunset on the Kongo River, Diani, Kenya',
+        image: 'assets/images/family.jpeg',
+        imageAlt: 'Guests snorkelling in a hidden sea cave, Diani, Kenya',
         duration: '5 Days / 4 Nights',
         name: 'The 5-Day Diani Adventure',
         keywords: 'Curated Stay &middot; Local Style &middot; Dolphins &middot; Village Connection',
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
           'A surprise, courtesy of Palm & Tide',
         ],
         price: '$172 &ndash; $680',
-        priceExtra: 'Covers 4 nights across our 5 stay categories, plus everything below.',
+        priceExtra: 'Covers 4 nights across the stays we offer, plus everything below.',
         includes: [
           '4 nights at your chosen stay',
           'Daily breakfast & the welcome meal',
@@ -278,8 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       '7-day': {
         formValue: 'The 7-Day Diani Immersion',
-        image: 'assets/images/adventure.png',
-        imageAlt: 'Friends laughing and running on the beach, Diani, Kenya',
+        image: 'assets/images/meet.png',
+        imageAlt: 'Guests meeting a local community, Diani, Kenya',
         duration: '7 Days / 6 Nights',
         name: 'The 7-Day Diani Immersion',
         keywords: 'Slow Travel &middot; Full Coast Immersion &middot; Marine Park Day Trip',
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
           'Local styling guide & village e-bike tour',
         ],
         price: '$258 &ndash; $1,020',
-        priceExtra: 'Covers 6 nights across our 5 stay categories, plus everything below.',
+        priceExtra: 'Covers 6 nights across the stays we offer, plus everything below.',
         includes: [
           '6 nights at your chosen stay',
           'Daily breakfast',
@@ -324,8 +324,8 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       family: {
         formValue: 'Family Journeys',
-        image: 'assets/images/dolphine.jpg',
-        imageAlt: 'Family ocean excursion off Wasini Island, Kenya',
+        image: 'assets/images/villa2.jpeg',
+        imageAlt: 'Villa courtyard and pool, Diani, Kenya',
         duration: 'Flexible Duration',
         name: 'Family Journeys',
         keywords: 'Kid-Friendly Pace &middot; Wildlife Day &middot; Family Stays',
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
           'Shown below as a 5-day sample',
         ],
         price: 'From $43/night',
-        priceExtra: 'Accommodation-based, across our 5 stay categories — tell us your dates for a full quotation.',
+        priceExtra: 'Accommodation-based, across the stays we offer — tell us your dates for a full quotation.',
         includes: [
           'Your chosen stay, priced per night (family rooms & villas available)',
           'Daily breakfast',
@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       team: {
         formValue: 'Team Building',
-        image: 'assets/images/kongo.png',
+        image: 'assets/images/kongo-cruise.jpg',
         imageAlt: 'Group boat ride at sunset on the Kongo River, Diani, Kenya',
         duration: 'Flexible Duration',
         name: 'Team Building',
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
           'Shown below as a 3-day sample',
         ],
         price: 'From $43/night',
-        priceExtra: 'Accommodation-based, across our 5 stay categories — tell us your group size for a full quotation.',
+        priceExtra: 'Accommodation-based, across the stays we offer — tell us your group size for a full quotation.',
         includes: [
           'Your chosen stay, priced per night (group rates available)',
           'Daily breakfast',
@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       'day-tide-led': {
         formValue: 'A Tide-Led Coastal Escape',
-        image: 'assets/images/tide_led.jpeg',
+        image: 'assets/images/cave.jpeg',
         imageAlt: 'A Tide-Led Coastal Escape, Diani, Kenya',
         duration: '1 Day',
         name: 'A Tide-Led Coastal Escape',
@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       'day-kisite': {
         formValue: 'Kisite Dolphin Escape',
-        image: 'assets/images/kisite.jpeg',
+        image: 'assets/images/dolphine.jpg',
         imageAlt: 'Kisite Dolphin Escape, Wasini, Kenya',
         duration: '1 Day',
         name: 'Kisite Dolphin Escape',
@@ -520,7 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       'day-mangrove': {
         formValue: 'Sunset Mangrove Escape',
-        image: 'assets/images/sunsetmangro.jpeg',
+        image: 'assets/images/kongo.jpeg',
         imageAlt: 'Sunset Mangrove Escape, Diani, Kenya',
         duration: '1 Day',
         name: 'Sunset Mangrove Escape',
@@ -682,6 +682,19 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       `;
+
+      // Accordion behaviour: opening one reveal closes any other
+      // that's open, so the modal doesn't grow tall with every
+      // section stacked open at once.
+      const revealDetails = packageModalBody.querySelectorAll('.pkg-modal-reveal');
+      revealDetails.forEach((detailsEl) => {
+        detailsEl.addEventListener('toggle', () => {
+          if (!detailsEl.open) return;
+          revealDetails.forEach((other) => {
+            if (other !== detailsEl) other.open = false;
+          });
+        });
+      });
     };
 
     const openPackageModal = (key) => {

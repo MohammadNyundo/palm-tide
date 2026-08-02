@@ -769,8 +769,56 @@
 }
 
 .pkg-card-cta{
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
   font-size: 0.8rem;
   color: var(--azure);
+  transition: color 0.35s;
+}
+
+/* Same rising-water tide fill as .btn-journey (see that rule for
+   the reasoning) — but triggered by hovering the card, since the
+   whole .pkg-card is the clickable element and this CTA is just
+   a label inside it, not a button of its own. */
+.pkg-card-cta::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 320%;
+  z-index: -1;
+  background: var(--lagoon);
+  opacity: 0.88;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C60 6 120 54 200 30 C280 6 340 54 400 30 L400 60 L0 60 Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C60 6 120 54 200 30 C280 6 340 54 400 30 L400 60 L0 60 Z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  transform: translateY(100%);
+  transition: transform 0.65s cubic-bezier(0.22, 0.7, 0.2, 1);
+}
+
+.pkg-card:hover .pkg-card-cta,
+.pkg-card:focus-visible .pkg-card-cta{
+  color: var(--foam);
+}
+
+.pkg-card:hover .pkg-card-cta::before,
+.pkg-card:focus-visible .pkg-card-cta::before{
+  transform: translateY(0%);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .pkg-card-cta::before{ transition: none; }
 }
 
 /* ---------- PACKAGE DETAILS MODAL ----------
